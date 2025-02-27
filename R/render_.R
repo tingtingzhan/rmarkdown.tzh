@@ -28,7 +28,11 @@
 #' out = list(
 #'   A = 1:3,
 #'   B = flextable(head(swiss)),
-#'   C = ggplot(mtcars, aes(wt, mpg)) + geom_point()
+#'   C = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
+#'   D = list(
+#'    t.test(mpg ~ am, data = mtcars),
+#'    power.t.test(power = .90, delta = 1)
+#'   )
 #' )
 #' render_(out, filename = 'test')
 #' 

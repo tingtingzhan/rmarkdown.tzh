@@ -24,7 +24,18 @@ rmd_ <- function(x, ...) {
 #' @rdname rmd_
 #' @export rmd_.default
 #' @export
-rmd_.default <- function(x, ...) invisible()
+rmd_.default <- function(x, xnm, ...) {
+  # currently accepts
+  # 'power.htest'
+  # 'htest'
+  return(c(
+    '```{r comment = NA}', 
+    xnm,
+    '```'
+  ))
+}
+
+
 
 
 #' @rdname rmd_
@@ -58,15 +69,7 @@ rmd_.noquote <- function(x, xnm, ...) {
 
 
 
-#' @rdname rmd_
-#' @export
-rmd_.power.htest <- function(x, xnm, ...) {
-  return(c(
-    '```{r comment = NA}', 
-    xnm,
-    '```'
-  ))
-}
+
 
 
 

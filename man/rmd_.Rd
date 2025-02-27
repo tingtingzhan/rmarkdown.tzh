@@ -7,7 +7,6 @@
 \alias{rmd_.numeric}
 \alias{rmd_.character}
 \alias{rmd_.noquote}
-\alias{rmd_.power.htest}
 \alias{rmd_.ggplot}
 \alias{rmd_.gDesc}
 \alias{rmd_.gList}
@@ -16,7 +15,7 @@
 \usage{
 rmd_(x, ...)
 
-\method{rmd_}{default}(x, ...)
+\method{rmd_}{default}(x, xnm, ...)
 
 \method{rmd_}{list}(x, xnm, ...)
 
@@ -25,8 +24,6 @@ rmd_(x, ...)
 \method{rmd_}{character}(x, ...)
 
 \method{rmd_}{noquote}(x, xnm, ...)
-
-\method{rmd_}{power.htest}(x, xnm, ...)
 
 \method{rmd_}{ggplot}(x, xnm, ...)
 
