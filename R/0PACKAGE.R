@@ -4,6 +4,8 @@
 #' 
 #' @description ..
 #' 
+#' 
+#' @import flextable.tzh
 #' @keywords internal
 '_PACKAGE'
 

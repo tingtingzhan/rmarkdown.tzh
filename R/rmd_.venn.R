@@ -17,6 +17,7 @@ rmd_.venn <- function(x, xnm, ...) {
   # .. does not have ?base::dim
   return(c(
     sprintf(fmt = 'Venn diagram is created using <u>**`R`**</u> package <u>**`VennDiagram`**</u>.'),
+    '',
     '```{r results = \'asis\'}', 
     sprintf(fmt = 'grid::grid.draw(venn.tzh::zero_venn(%s))', xnm), # my [plot.venn]
     '```'

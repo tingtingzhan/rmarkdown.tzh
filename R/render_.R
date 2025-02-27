@@ -25,17 +25,26 @@
 #' @examples
 #' library(flextable)
 #' library(ggplot2)
-#' out = list(
-#'   A = 1:3,
-#'   B = flextable(head(swiss)),
-#'   C = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
-#'   D = list(
+#' library(DemographicTable)
+#' library(venn.tzh)
+#' library(DanielBiostatistics10th)
+#' library(rpart.tzh); library(rpart)
+#' 
+#' list(
+#'   '`numeric`' = 1:3,
+#'   '`flextable`' = flextable(head(swiss)),
+#'   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
+#'   '`htest` & `power.htest`' = list(
 #'    t.test(mpg ~ am, data = mtcars),
 #'    power.t.test(power = .90, delta = 1)
-#'   )
-#' )
-#' render_(out, filename = 'test')
-#' 
+#'   ),
+#'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake')),
+#'   '`venn`' = venn(list(
+#'    A = state.name[1:20], 
+#'    B = state.name[15:30])),
+#'   '`binTab`' = binTab(matrix(c(7L, 3L, 8L, 6L), nrow = 2L)),
+#'   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
+#' ) |> render_(filename = 'test')
 #' @importFrom cli col_cyan
 #' @importFrom rmarkdown render
 #' @importFrom utils citation
