@@ -23,6 +23,6 @@ library(mDFR)
 ds = split(santos1, f = ~ Hr + antigen)
 list(
  '`maxT`' = maxT_santos_test(data1 = ds$`18.CEF`, data0 = ds$`0.CEF`)
-) |> render_(filename = 'test')
+) |> render_(filename = 'maxT')
 }
 }

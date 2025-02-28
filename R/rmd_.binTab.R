@@ -12,7 +12,11 @@
 #' @returns 
 #' Function [rmd_.binTab] returns a \link[base]{character} \link[base]{vector}.
 #' 
-#' @keywords internal
+#' @examples
+#' library(DanielBiostatistics10th)
+#' list(
+#'   '`binTab`' = binTab(matrix(c(7L, 3L, 8L, 6L), nrow = 2L))
+#' ) |> render_(filename = 'binTab')
 #' @export rmd_.binTab
 #' @export
 rmd_.binTab <- function(x, xnm = substitute(x), ...) {

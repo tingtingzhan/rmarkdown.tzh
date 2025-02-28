@@ -13,7 +13,11 @@
 #' @returns 
 #' Function [rmd_.DemographicTable] returns a \link[base]{character} \link[base]{vector}.
 #' 
-#' @keywords internal
+#' @examples
+#' library(DemographicTable)
+#' list(
+#'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
+#' ) |> render_(filename = 'DemographicTable')
 #' @export rmd_.DemographicTable
 #' @export
 rmd_.DemographicTable <- function(x, xnm, ...) {

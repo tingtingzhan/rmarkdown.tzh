@@ -16,10 +16,10 @@
 #' m = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
 #' list(
 #'  '`matchit`' = m
-#' ) |> render_(filename = 'test')
+#' ) |> render_(filename = 'matchit1')
 #' list(
 #'  '`matchit`' = m |> summary(addlvariables = 're78')
-#' ) |> render_(filename = 'test')
+#' ) |> render_(filename = 'matchit2')
 #' @importFrom stats formula
 #' @name rmd_matchit
 #' @export rmd_.summary.matchit

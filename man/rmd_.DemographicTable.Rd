@@ -19,4 +19,9 @@ Function \link{rmd_.DemographicTable} returns a \link[base]{character} \link[bas
 \description{
 Method dispatch to \link[DemographicTable]{DemographicTable} for S3 generic \code{rmd_} (in a secret master package).
 }
-\keyword{internal}
+\examples{
+library(DemographicTable)
+list(
+  '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
+) |> render_(filename = 'DemographicTable')
+}

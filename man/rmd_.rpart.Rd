@@ -19,3 +19,9 @@ Function \link{rmd_.rpart} returns a \link[base]{character} \link[base]{vector}.
 \description{
 ..
 }
+\examples{
+library(rpart.tzh); library(rpart)
+list(
+  '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
+) |> render_(filename = 'rpart')
+}
