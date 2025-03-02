@@ -34,7 +34,7 @@ rmd_.binTab <- function(x, xnm = substitute(x), ...) {
     sprintf(fmt = 'as_flextable(%s)', xnm),
     '```', 
     '```{r comment = NA}', 
-    paste0('cat(Sprintf.binTab(', xnm, '), sep = \'\n\')'), # how to put in `prevalence` here??
+    paste0('print.binTab(', xnm, ', print_flextable = FALSE)'), # how to put in `prevalence` here??
     '```'
   )
 }
