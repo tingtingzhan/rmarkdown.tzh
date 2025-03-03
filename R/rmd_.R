@@ -17,7 +17,7 @@
 #' @export
 rmd_ <- function(x, ...) {
   if (!length(x)) return(invisible())
-  UseMethod('rmd_')
+  UseMethod(generic = 'rmd_')
 }
 
 

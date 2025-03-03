@@ -18,7 +18,6 @@
 #' list(
 #'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
 #' ) |> render_(filename = 'DemographicTable')
-#' @export rmd_.DemographicTable
 #' @export
 rmd_.DemographicTable <- function(x, xnm, ...) {
   
