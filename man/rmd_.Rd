@@ -2,7 +2,8 @@
 % Please edit documentation in R/rmd_.R
 \name{rmd_}
 \alias{rmd_}
-\alias{rmd_.default}
+\alias{rmd_.htest}
+\alias{rmd_.power.htest}
 \alias{rmd_.data.frame}
 \alias{rmd_.array}
 \alias{rmd_.TukeyHSD}
@@ -18,7 +19,9 @@
 \usage{
 rmd_(x, ...)
 
-\method{rmd_}{default}(x, xnm, ...)
+\method{rmd_}{htest}(x, xnm, ...)
+
+\method{rmd_}{power.htest}(x, xnm, ...)
 
 \method{rmd_}{data.frame}(x, xnm, ...)
 
@@ -54,8 +57,10 @@ Generate R Markdown Script
 }
 \examples{
 list(
-  '`htest` & `power.htest`' = list(
-   t.test(mpg ~ am, data = mtcars),
+  '`htest`' = list(
+   t.test(mpg ~ am, data = mtcars)
+  ),
+  '`power.htest`' = list(
    power.t.test(power = .90, delta = 1)
   )
 ) |> render_(file = 'htest')

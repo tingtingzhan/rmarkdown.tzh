@@ -20,18 +20,7 @@ rmd_ <- function(x, ...) {
   UseMethod(generic = 'rmd_')
 }
 
-
-#' @rdname rmd_
-#' @examples
-#' list(
-#'   '`htest` & `power.htest`' = list(
-#'    t.test(mpg ~ am, data = mtcars),
-#'    power.t.test(power = .90, delta = 1)
-#'   )
-#' ) |> render_(file = 'htest')
-#' @export rmd_.default
-#' @export
-rmd_.default <- function(x, xnm, ...) {
+rmd_naive <- function(x, xnm, ...) {
   # currently accepts
   # 'power.htest'
   # 'htest'
@@ -41,6 +30,28 @@ rmd_.default <- function(x, xnm, ...) {
     '```'
   ))
 }
+
+#' @rdname rmd_
+#' @export rmd_.htest
+#' @export
+rmd_.htest <- rmd_naive
+
+
+#' @rdname rmd_
+#' @examples
+#' list(
+#'   '`htest`' = list(
+#'    t.test(mpg ~ am, data = mtcars)
+#'   ),
+#'   '`power.htest`' = list(
+#'    power.t.test(power = .90, delta = 1)
+#'   )
+#' ) |> render_(file = 'htest')
+#' @method rmd_ power.htest
+#' @export rmd_.power.htest
+#' @export
+rmd_.power.htest <- rmd_naive
+
 
 
 
