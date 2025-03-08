@@ -22,6 +22,13 @@ rmd_ <- function(x, ...) {
 
 
 #' @rdname rmd_
+#' @examples
+#' list(
+#'   '`htest` & `power.htest`' = list(
+#'    t.test(mpg ~ am, data = mtcars),
+#'    power.t.test(power = .90, delta = 1)
+#'   )
+#' ) |> render_(file = 'htest')
 #' @export rmd_.default
 #' @export
 rmd_.default <- function(x, xnm, ...) {
@@ -34,6 +41,63 @@ rmd_.default <- function(x, xnm, ...) {
     '```'
   ))
 }
+
+
+
+
+#' @rdname rmd_
+#' @examples
+#' list(
+#'   '`data.frame`' = swiss
+#' ) |> render_(file = 'data.frame')
+#' @export rmd_.data.frame
+#' @export
+rmd_.data.frame <- function(x, xnm, ...) {
+  return(c(
+    '```{r results = \'asis\'}', 
+    paste0('flextable.tzh::as_flextable_dataframe(', xnm, ')'),
+    '```', 
+    '<any-text>'
+  ))
+}
+
+
+#' @rdname rmd_
+#' @examples
+#' list(
+#'   '`matrix`' = VADeaths
+#' ) |> render_(file = 'matrix')
+#' @export rmd_.array
+#' @export
+rmd_.array <- function(x, xnm, ...) {
+  return(c(
+    '```{r results = \'asis\'}', 
+    paste0('flextable.tzh::as_flextable.array(', xnm, ')'), # 3-dimension not working well now!!
+    '```', 
+    '<any-text>'
+  ))
+}
+
+
+
+
+#' @rdname rmd_
+#' @examples
+#' list(
+#'   '`TukeyHSD`' = aov(breaks ~ wool + tension, data = warpbreaks) |>
+#'        TukeyHSD(which = 'tension', ordered = TRUE)
+#' ) |> render_(file = 'TukeyHSD')
+#' @export rmd_.TukeyHSD
+#' @export
+rmd_.TukeyHSD <- function(x, xnm, ...) {
+  return(c(
+    '```{r results=\'asis\'}', 
+    sprintf(fmt = 'flextable.tzh::as_flextable.TukeyHSD(%s)', xnm),
+    '```', 
+    '<any-text>'
+  ))
+}
+
 
 
 
@@ -75,6 +139,12 @@ rmd_.noquote <- function(x, xnm, ...) {
 
 
 #' @rdname rmd_
+#' @examples
+#' library(ggplot2)
+#' list(
+#'   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point()
+#' ) |> render_(file = 'ggplot')
+#' @export rmd_.ggplot
 #' @export
 rmd_.ggplot <- function(x, xnm, ...) {
   

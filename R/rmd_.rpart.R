@@ -18,7 +18,7 @@
 #' library(rpart.tzh); library(rpart)
 #' list(
 #'   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
-#' ) |> render_(filename = 'rpart')
+#' ) |> render_(file = 'rpart')
 #' @export rmd_.rpart
 #' @export
 rmd_.rpart <- function(x, xnm, ...) {

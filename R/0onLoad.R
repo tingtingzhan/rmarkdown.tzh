@@ -31,3 +31,14 @@
   )
   
 }
+
+
+# theme(
+#  legend.position = 'inside',
+#  legend.position.inside = c(.8, .65),
+#  legend.background = element_rect(color = 'grey95'),
+#  legend.key.spacing.y = grid::unit(.05, units = 'npc')
+# )
+# 
+
+

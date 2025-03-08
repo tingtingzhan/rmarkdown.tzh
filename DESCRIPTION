@@ -11,7 +11,7 @@ Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"),
 Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.3.0)
-Suggests: flextable, rpart, survival, 
+Suggests: rpart, survival, 
   MatchIt,
   DanielBiostatistics10th, DemographicTable, 
   mDFR,

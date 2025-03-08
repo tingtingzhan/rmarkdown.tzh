@@ -26,5 +26,5 @@ m = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
 list(
  '`matchit1`' = m,
  '`matchit2`' = m |> summary(addlvariables = 're78')
-) |> render_(filename = 'matchit')
+) |> render_(file = 'matchit')
 }

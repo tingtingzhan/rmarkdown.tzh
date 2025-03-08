@@ -17,7 +17,7 @@
 #' list(
 #'  '`matchit1`' = m,
 #'  '`matchit2`' = m |> summary(addlvariables = 're78')
-#' ) |> render_(filename = 'matchit')
+#' ) |> render_(file = 'matchit')
 #' @importFrom stats formula
 #' @name rmd_matchit
 #' @export rmd_.summary.matchit

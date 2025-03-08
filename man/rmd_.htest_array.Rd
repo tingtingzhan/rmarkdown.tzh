@@ -20,11 +20,10 @@ Function \link{rmd_.htest_array} returns a \link[base]{character} \link[base]{ve
 ..
 }
 \examples{
-library(flextable)
 set.seed(100)
 x = matrix(rnorm(50), ncol = 5, dimnames = list(NULL, LETTERS[1:5]))
 y = matrix(rnorm(30), ncol = 3, dimnames = list(NULL, letters[1:3]))
 list(
   '`htest_array`' = outer.cor.test(x, y)
-) |> render_(filename = 'htest_array')
+) |> render_(file = 'htest_array')
 }

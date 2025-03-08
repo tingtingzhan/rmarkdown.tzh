@@ -14,7 +14,7 @@
 \item{...}{additional parameters, currently not in use}
 }
 \value{
-Function \link{rmd_.DemographicTable} returns a \link[base]{character} \link[base]{vector}.
+Function \code{\link[=rmd_.DemographicTable]{rmd_.DemographicTable()}} returns a \link[base]{character} \link[base]{vector}.
 }
 \description{
 Method dispatch to \link[DemographicTable]{DemographicTable} for S3 generic \code{rmd_} (in a secret master package).
@@ -23,5 +23,5 @@ Method dispatch to \link[DemographicTable]{DemographicTable} for S3 generic \cod
 library(DemographicTable)
 list(
   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
-) |> render_(filename = 'DemographicTable')
+) |> render_(file = 'DemographicTable')
 }

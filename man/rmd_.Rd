@@ -3,6 +3,9 @@
 \name{rmd_}
 \alias{rmd_}
 \alias{rmd_.default}
+\alias{rmd_.data.frame}
+\alias{rmd_.array}
+\alias{rmd_.TukeyHSD}
 \alias{rmd_.list}
 \alias{rmd_.numeric}
 \alias{rmd_.character}
@@ -16,6 +19,12 @@
 rmd_(x, ...)
 
 \method{rmd_}{default}(x, xnm, ...)
+
+\method{rmd_}{data.frame}(x, xnm, ...)
+
+\method{rmd_}{array}(x, xnm, ...)
+
+\method{rmd_}{TukeyHSD}(x, xnm, ...)
 
 \method{rmd_}{list}(x, xnm, ...)
 
@@ -42,4 +51,26 @@ rmd_(x, ...)
 }
 \description{
 Generate R Markdown Script
+}
+\examples{
+list(
+  '`htest` & `power.htest`' = list(
+   t.test(mpg ~ am, data = mtcars),
+   power.t.test(power = .90, delta = 1)
+  )
+) |> render_(file = 'htest')
+list(
+  '`data.frame`' = swiss
+) |> render_(file = 'data.frame')
+list(
+  '`matrix`' = VADeaths
+) |> render_(file = 'matrix')
+list(
+  '`TukeyHSD`' = aov(breaks ~ wool + tension, data = warpbreaks) |>
+       TukeyHSD(which = 'tension', ordered = TRUE)
+) |> render_(file = 'TukeyHSD')
+library(ggplot2)
+list(
+  '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point()
+) |> render_(file = 'ggplot')
 }

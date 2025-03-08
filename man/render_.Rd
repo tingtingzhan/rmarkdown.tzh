@@ -8,7 +8,7 @@ render_(
   content,
   path = tempdir(),
   document = c("html", "word", "pdf"),
-  filename = stop("must specify `filename` explicitly"),
+  file = stop("must specify `file` explicitly"),
   autofold = (document == "html"),
   author = "tingting.zhan@jefferson.edu",
   rmd.rm = TRUE,
@@ -23,7 +23,7 @@ render_(
 \item{document}{\link[base]{character} scalar, type of output document,
 \code{'html'} (default), \code{'word'} or \code{'pdf'}}
 
-\item{filename}{\link[base]{character} scalar}
+\item{file}{\link[base]{character} scalar}
 
 \item{autofold}{\link[base]{logical} scalar}
 
@@ -36,17 +36,4 @@ default \code{TRUE}}
 }
 \description{
 ..
-}
-\examples{
-library(flextable)
-library(ggplot2)
-list(
-  '`numeric`' = 1:3,
-  '`flextable`' = flextable(head(swiss)),
-  '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
-  '`htest` & `power.htest`' = list(
-   t.test(mpg ~ am, data = mtcars),
-   power.t.test(power = .90, delta = 1)
-  )
-) |> render_(filename = 'test')
 }

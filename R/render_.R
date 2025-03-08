@@ -11,7 +11,7 @@
 #' 
 #' @param path \link[base]{character} scalar 
 #' 
-#' @param filename \link[base]{character} scalar
+#' @param file \link[base]{character} scalar
 #' 
 #' @param author \link[base]{character} scalar, author's name and/or email
 #' 
@@ -22,18 +22,6 @@
 #' 
 #' @param ... ..
 #' 
-#' @examples
-#' library(flextable)
-#' library(ggplot2)
-#' list(
-#'   '`numeric`' = 1:3,
-#'   '`flextable`' = flextable(head(swiss)),
-#'   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
-#'   '`htest` & `power.htest`' = list(
-#'    t.test(mpg ~ am, data = mtcars),
-#'    power.t.test(power = .90, delta = 1)
-#'   )
-#' ) |> render_(filename = 'test')
 #' @importFrom cli col_cyan
 #' @importFrom rmarkdown render
 #' @importFrom utils citation
@@ -42,7 +30,7 @@ render_ <- function(
     content, 
     path = tempdir(),
     document = c('html', 'word', 'pdf'),
-    filename = stop('must specify `filename` explicitly'),
+    file = stop('must specify `file` explicitly'),
     autofold = (document == 'html'),
     author = 'tingting.zhan@jefferson.edu',
     rmd.rm = TRUE,
@@ -54,10 +42,10 @@ render_ <- function(
   path <- file.path(path, document)
   dir.create(path = path, showWarnings = FALSE, recursive = TRUE)
   
-  if (length(filename) != 1L || !is.character(filename) || is.na(filename) ||
-      grepl(pattern = '\\:', x = filename)) stop('`filename` must be len-1 character, without ', sQuote(':'))
-  frmd <- file.path(path, sprintf(fmt = '%s %s.rmd', format.Date(Sys.Date()), filename))
-  fout <- file.path(path, sprintf(fmt = '%s %s.%s', format.Date(Sys.Date()), filename, switch(document, word = 'docx', document)))
+  if (length(file) != 1L || !is.character(file) || is.na(file) ||
+      grepl(pattern = '\\:', x = file)) stop('`file` must be len-1 character, without ', sQuote(':'))
+  frmd <- file.path(path, sprintf(fmt = '%s %s.rmd', format.Date(Sys.Date()), file))
+  fout <- file.path(path, sprintf(fmt = '%s %s.%s', format.Date(Sys.Date()), file, switch(document, word = 'docx', document)))
   if (file.exists(fout)) {
     if (document == 'word') system('osascript -e \'quit app "Word"\'') # Word will not automatically close when the .docx file is deleted
     file.remove(fout)
@@ -66,7 +54,7 @@ render_ <- function(
   
   lrmd <- c( # .rmd lines
     '---',
-    sprintf(fmt = 'title: %s', filename),
+    sprintf(fmt = 'title: %s', file),
     sprintf(fmt = 'author: %s', author),
     sprintf(fmt = 'date: %s', format.POSIXct(Sys.time())),
     sprintf(fmt = switch(document, html =, word = {
@@ -90,8 +78,8 @@ render_ <- function(
     '```{r setup, include = FALSE}',
     'knitr::opts_chunk$set(echo = FALSE)',
     'options(bitmapType = \'cairo\')', # for correct unicode support; DO I STILL NEED THIS ??
+    'library(flextable)', # need!!
     # 'library(tippy)', # Tingting has decided to remove the use of ?tippy::tippy_this
-    # 'library(flextable)', # try to write this as `::`
     # 'library(htmlwidgets)', # try to write this as `::`
     '```'
   )

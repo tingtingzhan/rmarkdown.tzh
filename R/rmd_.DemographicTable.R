@@ -11,13 +11,13 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @returns 
-#' Function [rmd_.DemographicTable] returns a \link[base]{character} \link[base]{vector}.
+#' Function [rmd_.DemographicTable()] returns a \link[base]{character} \link[base]{vector}.
 #' 
 #' @examples
 #' library(DemographicTable)
 #' list(
 #'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
-#' ) |> render_(filename = 'DemographicTable')
+#' ) |> render_(file = 'DemographicTable')
 #' @export
 rmd_.DemographicTable <- function(x, xnm, ...) {
   

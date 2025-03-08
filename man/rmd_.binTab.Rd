@@ -23,5 +23,5 @@ Method dispatch to \link[DanielBiostatistics10th]{binTab} for S3 generic \code{r
 library(DanielBiostatistics10th)
 list(
   '`binTab`' = binTab(matrix(c(7L, 3L, 8L, 6L), nrow = 2L))
-) |> render_(filename = 'binTab')
+) |> render_(file = 'binTab')
 }

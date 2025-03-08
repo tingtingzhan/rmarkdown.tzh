@@ -21,7 +21,7 @@
 #'   with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
 #' list(
 #'   '`pairwise.htest`' = m
-#' ) |> render_(filename = 'pairwise.htest')
+#' ) |> render_(file = 'pairwise.htest')
 #' @export rmd_.pairwise.htest
 #' @export
 rmd_.pairwise.htest <- function(x, xnm, ...) c(
