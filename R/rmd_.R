@@ -21,9 +21,6 @@ rmd_ <- function(x, ...) {
 }
 
 rmd_naive <- function(x, xnm, ...) {
-  # currently accepts
-  # 'power.htest'
-  # 'htest'
   return(c(
     '```{r comment = NA}', 
     xnm,
