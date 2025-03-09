@@ -1,6 +1,6 @@
 
 
-#' @title Create and Render R Markdown files from an R project
+#' @title Create and Render R Markdown file
 #' 
 #' @description ..
 #' 
@@ -79,6 +79,7 @@ render_ <- function(
     'knitr::opts_chunk$set(echo = FALSE)',
     'options(bitmapType = \'cairo\')', # for correct unicode support; DO I STILL NEED THIS ??
     'library(flextable)', # need!!
+    'library(patchwork)', # need!!!
     # 'library(tippy)', # Tingting has decided to remove the use of ?tippy::tippy_this
     # 'library(htmlwidgets)', # try to write this as `::`
     '```'

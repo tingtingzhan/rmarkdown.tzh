@@ -1,10 +1,12 @@
 
 
-#' @title Create R Markdown Script for `pairwise.htest`
+#' @title R Markdown Script of `pairwise.htest`
 #' 
 #' @description ..
 #' 
-#' @param x a `pairwise.htest`
+#' @param x a `pairwise.htest` object, i.e., the returned value from functions 
+#' \link[stats]{pairwise.t.test}, \link[stats]{pairwise.wilcox.test} 
+#' or \link[stats]{pairwise.prop.test}
 #' 
 #' @param xnm \link[base]{character} scalar, call of `x`
 #' 

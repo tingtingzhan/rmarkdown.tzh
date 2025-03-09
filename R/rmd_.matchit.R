@@ -1,5 +1,5 @@
 
-#' @title R Markdown Format of \link[MatchIt]{matchit} Object
+#' @title R Markdown Script of \link[MatchIt]{matchit}
 #' 
 #' @description
 #' ..

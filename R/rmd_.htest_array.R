@@ -69,7 +69,7 @@ outer.cor.test <- function(X, Y = X, ...) {
 }
 
 
-#' @title Create R Markdown Script for [htest_array]
+#' @title R Markdown Script of [htest_array]
 #' 
 #' @description ..
 #' 

@@ -5,7 +5,7 @@
 # 'html_document' needs nothing, and will take '<>' as meaningless html tag (thus ignored) :)
 
 
-#' @title Generate R Markdown Script
+#' @title R Markdown Script
 #' 
 #' @param x an R object
 #' 
@@ -38,7 +38,14 @@
 #' library(venn.tzh); list(
 #'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
 #' ) |> render_(file = 'venn')
+#' 
+#' library(consort.tzh); list(
+#'   '`consort`' = consort_plot(data = dispos.data, 
+#'     orders = c(trialno = 'Population', exclusion = 'Excluded', trialno = 'Allocated'),
+#'     side_box = c('exclusion'), cex = 0.9)
+#' ) |> render_(file = 'consort')
 #' @name rmd_
+#' @importFrom consort.tzh rmd_.consort
 #' @importFrom DanielBiostatistics10th rmd_.binTab
 #' @importFrom DemographicTable rmd_.DemographicTable
 #' @importFrom mDFR rmd_.maxT

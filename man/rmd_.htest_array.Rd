@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmd_.htest_array.R
 \name{rmd_.htest_array}
 \alias{rmd_.htest_array}
-\title{Create R Markdown Script for \link{htest_array}}
+\title{R Markdown Script of \link{htest_array}}
 \usage{
 \method{rmd_}{htest_array}(x, xnm, ...)
 }

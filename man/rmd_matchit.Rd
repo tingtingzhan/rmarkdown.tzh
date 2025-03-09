@@ -4,7 +4,7 @@
 \alias{rmd_matchit}
 \alias{rmd_.summary.matchit}
 \alias{rmd_.matchit}
-\title{R Markdown Format of \link[MatchIt]{matchit} Object}
+\title{R Markdown Script of \link[MatchIt]{matchit}}
 \usage{
 \method{rmd_}{summary.matchit}(x, xnm, ...)
 

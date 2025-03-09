@@ -15,7 +15,7 @@
 \alias{rmd_.gDesc}
 \alias{rmd_.gList}
 \alias{rmd_.flextable}
-\title{Generate R Markdown Script}
+\title{R Markdown Script}
 \usage{
 rmd_(x, ...)
 
@@ -53,7 +53,7 @@ rmd_(x, ...)
 \item{xnm}{..}
 }
 \description{
-Generate R Markdown Script
+R Markdown Script
 }
 \examples{
 library(DanielBiostatistics10th); list(
@@ -80,6 +80,12 @@ library(rpart.tzh); library(rpart); list(
 library(venn.tzh); list(
   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
 ) |> render_(file = 'venn')
+
+library(consort.tzh); list(
+  '`consort`' = consort_plot(data = dispos.data, 
+    orders = c(trialno = 'Population', exclusion = 'Excluded', trialno = 'Allocated'),
+    side_box = c('exclusion'), cex = 0.9)
+) |> render_(file = 'consort')
 list(
   '`htest`' = list(
    t.test(mpg ~ am, data = mtcars)

@@ -2,12 +2,12 @@
 % Please edit documentation in R/rmd_.bibentry.R
 \name{rmd_.bibentry}
 \alias{rmd_.bibentry}
-\title{R Markdown Format of \link[utils]{citation} and/or \link[utils]{bibentry}}
+\title{R Markdown Script of \link[utils]{citation} and/or \link[utils]{bibentry}}
 \usage{
 \method{rmd_}{bibentry}(x, ...)
 }
 \arguments{
-\item{x}{a \link[utils]{citation} and/or \link[utils]{bibentry} object}
+\item{x}{a \link[utils]{citation} and/or \link[utils]{bibentry}}
 
 \item{...}{additional parameters, currently not in use}
 }

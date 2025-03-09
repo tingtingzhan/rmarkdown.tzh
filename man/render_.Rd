@@ -2,7 +2,7 @@
 % Please edit documentation in R/render_.R
 \name{render_}
 \alias{render_}
-\title{Create and Render R Markdown files from an R project}
+\title{Create and Render R Markdown file}
 \usage{
 render_(
   content,

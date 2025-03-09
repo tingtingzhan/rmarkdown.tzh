@@ -2,12 +2,14 @@
 % Please edit documentation in R/rmd_.pairwise.htest.R
 \name{rmd_.pairwise.htest}
 \alias{rmd_.pairwise.htest}
-\title{Create R Markdown Script for \code{pairwise.htest}}
+\title{R Markdown Script of \code{pairwise.htest}}
 \usage{
 \method{rmd_}{pairwise.htest}(x, xnm, ...)
 }
 \arguments{
-\item{x}{a \code{pairwise.htest}}
+\item{x}{a \code{pairwise.htest} object, i.e., the returned value from functions
+\link[stats]{pairwise.t.test}, \link[stats]{pairwise.wilcox.test}
+or \link[stats]{pairwise.prop.test}}
 
 \item{xnm}{\link[base]{character} scalar, call of \code{x}}
 

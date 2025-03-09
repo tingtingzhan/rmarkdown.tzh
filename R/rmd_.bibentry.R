@@ -1,11 +1,11 @@
 
 
-#' @title R Markdown Format of \link[utils]{citation} and/or \link[utils]{bibentry}
+#' @title R Markdown Script of \link[utils]{citation} and/or \link[utils]{bibentry}
 #' 
 #' @description 
 #' R markdown format of a \link[utils]{citation} and/or \link[utils]{bibentry} object.
 #' 
-#' @param x a \link[utils]{citation} and/or \link[utils]{bibentry} object
+#' @param x a \link[utils]{citation} and/or \link[utils]{bibentry}
 #'
 #' @param ... additional parameters, currently not in use
 #' 
