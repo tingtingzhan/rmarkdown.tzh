@@ -13,7 +13,37 @@
 #' 
 #' @param ... additional parameters, currently not in use
 #' 
+#' @examples
+#' library(DanielBiostatistics10th); list(
+#'   '`binTab`' = binTab(array(c(7L, 3L, 8L, 6L), dim = c(2,2)))
+#' ) |> render_(file = 'binTab')
+#' 
+#' library(DemographicTable); list(
+#'   '`DemographicTable`' = DemographicTable(CO2, groups = 'Type', include = c('conc', 'uptake'))
+#' ) |> render_(file = 'DemographicTable')
+#' 
+#' \donttest{
+#' library(mDFR)
+#' ?maxT_santos_test
+#' ds = split(santos1, f = ~ Hr + antigen)
+#' list(
+#'  '`maxT`' = maxT_santos_test(data1 = ds$`18.CEF`, data0 = ds$`0.CEF`)
+#' ) |> render_(file = 'maxT')
+#' } # slow
+#' 
+#' library(rpart.tzh); library(rpart); list(
+#'   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
+#' ) |> render_(file = 'rpart')
+#' 
+#' library(venn.tzh); list(
+#'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
+#' ) |> render_(file = 'venn')
 #' @name rmd_
+#' @importFrom DanielBiostatistics10th rmd_.binTab
+#' @importFrom DemographicTable rmd_.DemographicTable
+#' @importFrom mDFR rmd_.maxT
+#' @importFrom rpart.tzh rmd_.rpart
+#' @importFrom venn.tzh rmd_.venn
 #' @export
 rmd_ <- function(x, ...) {
   if (!length(x)) return(invisible())

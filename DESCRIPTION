@@ -6,15 +6,15 @@ Date: 2024-01-15
 Description: Tingting's extension to rmarkdown package.
 License: GPL-2
 Encoding: UTF-8
-Imports: rmarkdown, cli, ggplot2, stringi, flextable.tzh
+Imports: rmarkdown, cli, ggplot2, stringi, flextable.tzh,
+  DanielBiostatistics10th, DemographicTable,
+  mDFR,
+  rpart.tzh, 
+  venn.tzh
 Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"), email = c("tingtingzhan@gmail.com")))
 Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.4.0)
-Suggests: rpart, survival, 
-  MatchIt,
-  DemographicTable, 
-  mDFR,
-  rpart.tzh, 
-  venn.tzh
+Suggests: rpart, 
+  MatchIt
 RoxygenNote: 7.3.2

@@ -18,8 +18,8 @@
 #'  '`matchit1`' = m,
 #'  '`matchit2`' = m |> summary(addlvariables = 're78')
 #' ) |> render_(file = 'matchit')
-#' @importFrom stats formula
 #' @name rmd_matchit
+#' @importFrom stats formula
 #' @export rmd_.summary.matchit
 #' @export
 rmd_.summary.matchit <- function(x, xnm, ...) {

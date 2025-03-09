@@ -24,7 +24,7 @@
 #' 
 #' @examples 
 #' citation() |> rmd_.bibentry()
-#' library(survival); 'survival' |> citation() |> rmd_.bibentry()
+#' library(ggplot2); 'ggplot2' |> citation() |> rmd_.bibentry()
 #' if (FALSE) { # disabled for ?devtools::check
 #' ap = rownames(installed.packages())
 #' lapply(ap, FUN = function(i) i |> citation() |> rmd_.bibentry())
