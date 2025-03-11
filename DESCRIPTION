@@ -17,5 +17,5 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.4.0)
 Suggests: patchwork, 
-  MatchIt, rpart, survival.tzh
+  rpart, survival.tzh
 RoxygenNote: 7.3.2
