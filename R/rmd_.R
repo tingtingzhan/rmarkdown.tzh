@@ -126,23 +126,6 @@ rmd_.array <- function(x, xnm, ...) {
 
 
 
-#' @rdname rmd_
-#' @examples
-#' list(
-#'   '`TukeyHSD`' = aov(breaks ~ wool + tension, data = warpbreaks) |>
-#'        TukeyHSD(which = 'tension', ordered = TRUE)
-#' ) |> render_(file = 'TukeyHSD')
-#' @export rmd_.TukeyHSD
-#' @export
-rmd_.TukeyHSD <- function(x, xnm, ...) {
-  return(c(
-    '```{r results=\'asis\'}', 
-    sprintf(fmt = 'flextable.tzh::as_flextable.TukeyHSD(%s)', xnm),
-    '```', 
-    '<any-text>'
-  ))
-}
-
 
 
 

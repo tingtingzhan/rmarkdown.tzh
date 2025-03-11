@@ -94,7 +94,7 @@ outer.cor.test <- function(X, Y = X, ...) {
 rmd_.htest_array <- function(x, xnm, ...) c(
   '```{r results = \'asis\'}', 
   sprintf(fmt = '%s$estimate |> as_flextable.array() |> set_caption(caption = \'Correlation Coefficients\')', xnm),
-  sprintf(fmt = '%s$p.value |> as_flextable.array() |> set_caption(caption = \'p-values\')', xnm), 
+  sprintf(fmt = '%s$p.value |> format_pval() |> as_flextable.array() |> set_caption(caption = \'p-values\')', xnm), 
   sprintf(fmt = '%s |> p_adjust_.htest_array() |> format_pval() |> as_flextable.array() |> set_caption(caption = \'Multiple Testing Adjusted p-values\')', xnm), 
   '```', 
   '<any-text>'
