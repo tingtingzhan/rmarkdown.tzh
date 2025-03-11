@@ -8,7 +8,6 @@ License: GPL-2
 Encoding: UTF-8
 Imports: rmarkdown, cli, ggplot2, stringi, 
   consort.tzh,
-  DanielBiostatistics10th, DemographicTable,
   flextable.tzh,
   mDFR,
   rpart.tzh, 
