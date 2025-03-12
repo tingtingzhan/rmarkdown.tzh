@@ -77,11 +77,8 @@ render_ <- function(
     '```{r setup, include = FALSE}',
     'knitr::opts_chunk$set(echo = FALSE)',
     'options(bitmapType = \'cairo\')', # for correct unicode support; DO I STILL NEED THIS ??
-    'library(flextable)', # need!!
-    'library(flextable.tzh)', # need!!!
-    'library(patchwork)', # need!!!
-    # 'library(tippy)', # Tingting has decided to remove the use of ?tippy::tippy_this
-    # 'library(htmlwidgets)', # try to write this as `::`
+    'library(flextable)', # e.g., flextable::as_flextable
+    'library(flextable.tzh)', # e.g. flextable.tzh::as_flextable.array
     '```'
   )
   

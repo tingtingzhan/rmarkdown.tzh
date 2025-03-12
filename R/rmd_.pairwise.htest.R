@@ -13,7 +13,7 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @returns 
-#' Function [rmd_.pairwise.htest] returns a \link[base]{character} \link[base]{vector}.
+#' Function [rmd_.pairwise.htest()] returns a \link[base]{character} \link[base]{vector}.
 #' 
 #' @examples
 #' m = airquality |> 
@@ -27,7 +27,7 @@
 #' @export rmd_.pairwise.htest
 #' @export
 rmd_.pairwise.htest <- function(x, xnm, ...) c(
-  '```{r results = \'asis\'}', 
+  '```{r}', # multiple ?flextable::flextable
   sprintf(fmt = 'as_flextable.pairwise.htest(%s)', xnm), 
   sprintf(fmt = 'as_flextable.array(format_pval(p_adjust_.pairwise.htest(%s)))', xnm), 
   '```', 

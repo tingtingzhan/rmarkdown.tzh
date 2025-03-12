@@ -96,7 +96,7 @@ rmd_.power.htest <- rmd_naive
 #' @export
 rmd_.data.frame <- function(x, xnm, ...) {
   return(c(
-    '```{r results = \'asis\'}', 
+    '```{r}',
     paste0('as_flextable_dataframe(', xnm, ')'),
     '```', 
     '<any-text>'
@@ -113,7 +113,7 @@ rmd_.data.frame <- function(x, xnm, ...) {
 #' @export
 rmd_.array <- function(x, xnm, ...) {
   return(c(
-    '```{r results = \'asis\'}', 
+    '```{r}',
     paste0('as_flextable.array(', xnm, ')'), # 3-dimension not working well now!!
     '```', 
     '<any-text>'
@@ -128,6 +128,7 @@ rmd_.array <- function(x, xnm, ...) {
 
 
 #' @rdname rmd_
+#' @export rmd_.list
 #' @export
 rmd_.list <- function(x, xnm, ...) {
   tmp <- lapply(seq_along(x), FUN = function(i) {
@@ -137,12 +138,14 @@ rmd_.list <- function(x, xnm, ...) {
 }
 
 #' @rdname rmd_
+#' @export rmd_.numeric
 #' @export
 rmd_.numeric <- function(x, ...) {
   paste(x, collapse = ', ')
 }
 
 #' @rdname rmd_
+#' @export rmd_.character
 #' @export
 rmd_.character <- function(x, ...) x # not ?base::identity
 
@@ -150,6 +153,7 @@ rmd_.character <- function(x, ...) x # not ?base::identity
 
 
 #' @rdname rmd_
+#' @export rmd_.noquote
 #' @export
 rmd_.noquote <- function(x, xnm, ...) {
   rmd_(x = unclass(x), xnm = sprintf(fmt = 'unclass(%s)', xnm), ...)
@@ -178,7 +182,7 @@ rmd_.ggplot <- function(x, xnm, ...) {
   #corr <- attr(x, which = 'corr', exact = TRUE) # correlation coefficients from [ggScatter]
   #corr_rmd <- if (length(corr)) {
   #  c(
-  #    '```{r results=\'asis\'}', 
+  #    '```{r}', 
   #    if (!is.recursive(corr)) {
   #      sprintf(fmt = 'as_flextable(attr(%s, which = \'corr\', exact = TRUE))', xnm)
   #    } else sprintf(fmt = 'as_flextable(attr(%s, which = \'corr\', exact = TRUE)[[%d]])', xnm, seq_along(corr)), 
@@ -189,12 +193,34 @@ rmd_.ggplot <- function(x, xnm, ...) {
   return(c(
     attr(x, which = 'text', exact = TRUE),
     '\n',
-    sprintf(fmt = '```{r results = \'asis\', fig.height = %.1f, fig.width = %.1f}', h, w), 
+    sprintf(fmt = '```{r fig.height = %.1f, fig.width = %.1f}', h, w), 
     sprintf(fmt = 'suppressWarnings(print(%s))', xnm), 
     '```',
     # corr_rmd,
     '<any-text>'
   ))
+}
+
+
+#' @rdname rmd_
+#' @examples
+#' library(plotly); list(
+#'  '`htmlwidget` 1' = plot_ly(economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
+#'  '`htmlwidget` 2' = plot_ly(z = ~volcano, type = "surface")
+#' ) |> render_(file = 'htmlwidget')
+#' @export rmd_.htmlwidget
+#' @export
+rmd_.htmlwidget <- function(x, xnm, ...) {
+  return(c(
+    attr(x, which = 'text', exact = TRUE),
+    '\n',
+    '```{r}',
+    xnm, # invokes ?htmlwidgets:::print.htmlwidget
+    # sprintf(fmt = '%s |> print()', xnm), # do *not* do this!!
+    '```',
+    '<any-text>'
+  ))
+  
 }
 
 
@@ -205,13 +231,14 @@ rmd_.ggplot <- function(x, xnm, ...) {
 #' @rdname rmd_
 #' @export
 rmd_.gDesc <- function(x, xnm, ...) {
+  .Defunct(msg = 'use library(patchwork) instead!')
   dm <- dim(x) # gtable:::dim.gtable
   return(c(
     attr(x, which = 'text', exact = TRUE),
     '\n',
     if (length(dm) == 2L) {
-      sprintf(fmt = '```{r results = \'asis\', fig.height = %.1f, fig.width = %.1f}', 4*dm[1L], 6*dm[2L])
-    } else '```{r results = \'asis\'}', 
+      sprintf(fmt = '```{r fig.height = %.1f, fig.width = %.1f}', 4*dm[1L], 6*dm[2L])
+    } else '```{r}', 
     sprintf(fmt = 'grid::grid.draw(%s)', xnm), 
     '```'
   ))
@@ -225,10 +252,15 @@ rmd_.gList <- rmd_.gDesc
 
 
 #' @rdname rmd_
+#' @examples
+#' library(flextable); list(
+#'  '`flextable`' = flextable(mtcars)
+#' ) |> render_(file = 'flextable')
+#' @export rmd_.flextable
 #' @export
 rmd_.flextable <- function(x, xnm, ...) {
   return(c(
-    '```{r results = \'asis\'}', 
+    '```{r}',
     xnm,
     '```'
   ))

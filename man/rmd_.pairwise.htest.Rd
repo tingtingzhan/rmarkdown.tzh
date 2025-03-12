@@ -16,7 +16,7 @@ or \link[stats]{pairwise.prop.test}}
 \item{...}{additional parameters, currently not in use}
 }
 \value{
-Function \link{rmd_.pairwise.htest} returns a \link[base]{character} \link[base]{vector}.
+Function \code{\link[=rmd_.pairwise.htest]{rmd_.pairwise.htest()}} returns a \link[base]{character} \link[base]{vector}.
 }
 \description{
 ..

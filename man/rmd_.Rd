@@ -11,6 +11,7 @@
 \alias{rmd_.character}
 \alias{rmd_.noquote}
 \alias{rmd_.ggplot}
+\alias{rmd_.htmlwidget}
 \alias{rmd_.gDesc}
 \alias{rmd_.gList}
 \alias{rmd_.flextable}
@@ -35,6 +36,8 @@ rmd_(x, ...)
 \method{rmd_}{noquote}(x, xnm, ...)
 
 \method{rmd_}{ggplot}(x, xnm, ...)
+
+\method{rmd_}{htmlwidget}(x, xnm, ...)
 
 \method{rmd_}{gDesc}(x, xnm, ...)
 
@@ -99,4 +102,11 @@ list(
 library(ggplot2); list(
   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point()
 ) |> render_(file = 'ggplot')
+library(plotly); list(
+ '`htmlwidget` 1' = plot_ly(economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
+ '`htmlwidget` 2' = plot_ly(z = ~volcano, type = "surface")
+) |> render_(file = 'htmlwidget')
+library(flextable); list(
+ '`flextable`' = flextable(mtcars)
+) |> render_(file = 'flextable')
 }

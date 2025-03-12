@@ -28,8 +28,8 @@ rmd_.patchwork <- function(x, xnm, ncol = 2L, ...) {
   h <- ceiling(length(x) / ncol) * h_
   
   return(c(
-    sprintf(fmt = '```{r results = \'asis\', fig.height = %.1f, fig.width = %.1f}', h, w), 
-    sprintf(fmt = 'suppressWarnings(%s + plot_layout(ncol = %d))', xnm, ncol), # not sure how to put in `...`
+    sprintf(fmt = '```{r fig.height = %.1f, fig.width = %.1f}', h, w), 
+    sprintf(fmt = 'suppressWarnings(%s + patchwork::plot_layout(ncol = %d))', xnm, ncol), # not sure how to put in `...`
     '```',
     '<any-text>'
   ))
