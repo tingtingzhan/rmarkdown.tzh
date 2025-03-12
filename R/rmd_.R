@@ -23,6 +23,13 @@
 #' ) |> render_(file = 'maxT')
 #' } # slow
 #' 
+#' set.seed(100)
+#' x = matrix(rnorm(50), ncol = 5, dimnames = list(NULL, LETTERS[1:5]))
+#' y = matrix(rnorm(30), ncol = 3, dimnames = list(NULL, letters[1:3]))
+#' library(htest.tzh); list(
+#'   '`htest_array`' = outer.cor.test(x, y)
+#' ) |> render_(file = 'htest_array')
+#' 
 #' library(rpart.tzh); library(rpart); list(
 #'   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
 #' ) |> render_(file = 'rpart')
@@ -38,6 +45,7 @@
 #' ) |> render_(file = 'consort')
 #' @name rmd_
 #' @importFrom consort.tzh rmd_.consort
+#' @importFrom htest.tzh rmd_.htest_array
 #' @importFrom mDFR rmd_.maxT
 #' @importFrom rpart.tzh rmd_.rpart
 #' @importFrom venn.tzh rmd_.venn
@@ -59,7 +67,6 @@ rmd_naive <- function(x, xnm, ...) {
 #' @export rmd_.htest
 #' @export
 rmd_.htest <- rmd_naive
-
 
 #' @rdname rmd_
 #' @examples
@@ -90,7 +97,7 @@ rmd_.power.htest <- rmd_naive
 rmd_.data.frame <- function(x, xnm, ...) {
   return(c(
     '```{r results = \'asis\'}', 
-    paste0('flextable.tzh::as_flextable_dataframe(', xnm, ')'),
+    paste0('as_flextable_dataframe(', xnm, ')'),
     '```', 
     '<any-text>'
   ))
@@ -107,7 +114,7 @@ rmd_.data.frame <- function(x, xnm, ...) {
 rmd_.array <- function(x, xnm, ...) {
   return(c(
     '```{r results = \'asis\'}', 
-    paste0('flextable.tzh::as_flextable.array(', xnm, ')'), # 3-dimension not working well now!!
+    paste0('as_flextable.array(', xnm, ')'), # 3-dimension not working well now!!
     '```', 
     '<any-text>'
   ))
@@ -158,8 +165,7 @@ rmd_.noquote <- function(x, xnm, ...) {
 
 #' @rdname rmd_
 #' @examples
-#' library(ggplot2)
-#' list(
+#' library(ggplot2); list(
 #'   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point()
 #' ) |> render_(file = 'ggplot')
 #' @export rmd_.ggplot

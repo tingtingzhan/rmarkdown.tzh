@@ -22,7 +22,6 @@
 #' 
 #' @param ... ..
 #' 
-#' @importFrom cli col_cyan
 #' @importFrom rmarkdown render
 #' @importFrom utils citation
 #' @export
@@ -49,7 +48,7 @@ render_ <- function(
   if (file.exists(fout)) {
     if (document == 'word') system('osascript -e \'quit app "Word"\'') # Word will not automatically close when the .docx file is deleted
     file.remove(fout)
-    cat(col_cyan(c('Existing', sQuote(basename(fout)), 'removed\n')))
+    message('Existing ', sQuote(basename(fout)), ' removed')
   }
   
   lrmd <- c( # .rmd lines
@@ -79,6 +78,7 @@ render_ <- function(
     'knitr::opts_chunk$set(echo = FALSE)',
     'options(bitmapType = \'cairo\')', # for correct unicode support; DO I STILL NEED THIS ??
     'library(flextable)', # need!!
+    'library(flextable.tzh)', # need!!!
     'library(patchwork)', # need!!!
     # 'library(tippy)', # Tingting has decided to remove the use of ?tippy::tippy_this
     # 'library(htmlwidgets)', # try to write this as `::`

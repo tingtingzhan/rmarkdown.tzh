@@ -62,6 +62,13 @@ list(
 ) |> render_(file = 'maxT')
 } # slow
 
+set.seed(100)
+x = matrix(rnorm(50), ncol = 5, dimnames = list(NULL, LETTERS[1:5]))
+y = matrix(rnorm(30), ncol = 3, dimnames = list(NULL, letters[1:3]))
+library(htest.tzh); list(
+  '`htest_array`' = outer.cor.test(x, y)
+) |> render_(file = 'htest_array')
+
 library(rpart.tzh); library(rpart); list(
   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
 ) |> render_(file = 'rpart')
@@ -89,8 +96,7 @@ list(
 list(
   '`matrix`' = VADeaths
 ) |> render_(file = 'matrix')
-library(ggplot2)
-list(
+library(ggplot2); list(
   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point()
 ) |> render_(file = 'ggplot')
 }

@@ -6,9 +6,9 @@ Date: 2024-01-15
 Description: Tingting's extension to rmarkdown package.
 License: GPL-2
 Encoding: UTF-8
-Imports: rmarkdown, cli, ggplot2, stringi, 
+Imports: rmarkdown, ggplot2, stringi, 
   consort.tzh,
-  flextable.tzh,
+  htest.tzh,
   mDFR,
   rpart.tzh, 
   venn.tzh
@@ -16,6 +16,5 @@ Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"),
 Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.4.0)
-Suggests: patchwork, 
-  rpart, survival.tzh
+Suggests: patchwork, rpart, flextable.tzh, survival.tzh
 RoxygenNote: 7.3.2
