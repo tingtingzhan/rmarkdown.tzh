@@ -22,6 +22,7 @@ Extract package name(s) from a \link[base]{character} \link[base]{vector}
 }
 \examples{
 extract_pkg_name('<u>**`R`**</u> package <u>**`patchwork`**</u>')
+extract_pkg_name('<u>**`R`**</u> package <u>**`tools`**</u>') # 'tools' is a base-package
 extract_pkg_name(c('[R] package [patchwork]', '[ggplot2]'), pattern = '(?<=\\\\[)(.*?)(?=\\\\])')
 # exception handling
 extract_pkg_name(character())

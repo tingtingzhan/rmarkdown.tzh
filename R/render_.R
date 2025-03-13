@@ -106,7 +106,10 @@ render_ <- function(
     '\n',
     '## Citations',
     '<details>',
-    unlist(lapply(extract_pkg_name(lrmd), FUN = function(i) rmd_.bibentry(citation(package = i)))),
+    lrmd |> 
+      extract_pkg_name() |> 
+      lapply(FUN = function(i) i |> citation() |> rmd_.bibentry()) |>
+      unlist(),
     '</details>'
   )
   

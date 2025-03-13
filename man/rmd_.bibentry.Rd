@@ -30,8 +30,26 @@ in the following ways.
 \examples{
 citation() |> rmd_.bibentry()
 library(ggplot2); 'ggplot2' |> citation() |> rmd_.bibentry()
-if (FALSE) { # disabled for ?devtools::check
-ap = rownames(installed.packages())
-lapply(ap, FUN = function(i) i |> citation() |> rmd_.bibentry())
+list(
+ 'Methods' = list(
+  'String manipulation by **`R`** package **`stringi`**.',
+  'Conversion of R regression output to LaTeX or HTML by **`R`** package **`texreg`**.'
+ ),
+ '`bibentry`' = list(
+  'stringi' |> citation(), # good doi
+  'texreg' |> citation() # bad doi
+ )
+) |> render_(file = 'bibentry')
+
+# compare
+'stringi' |> citation() |> toBibtex() # using doi field, correct
+'texreg' |> citation() |> toBibtex() # using url field, not good! have not dealt with this before
+
+\dontrun{ # disabled for ?devtools::check
+ct = installed.packages() |>
+ rownames() |>
+ lapply(FUN = function(i) i |> citation()) # slow
+
+ct |> lapply(FUN = rmd_.bibentry)
 }
 }

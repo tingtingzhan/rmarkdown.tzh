@@ -13,6 +13,7 @@
 #' 
 #' @examples
 #' extract_pkg_name('<u>**`R`**</u> package <u>**`patchwork`**</u>')
+#' extract_pkg_name('<u>**`R`**</u> package <u>**`tools`**</u>') # 'tools' is a base-package
 #' extract_pkg_name(c('[R] package [patchwork]', '[ggplot2]'), pattern = '(?<=\\[)(.*?)(?=\\])')
 #' # exception handling
 #' extract_pkg_name(character())
@@ -37,6 +38,10 @@ extract_pkg_name <- function(
   if (any(!nzchar(ret))) stop('should not happen')
   # if (anyNA(ret)) may happen! (`x = ''`)
   
-  return(setdiff(c('base', ret[!is.na(ret)]), y = 'R'))
+  # installed.packages(priority = 'base') |> rownames() # RStudio do not have a delete button for base-packages
+  return(setdiff(
+    x = c('base', ret[!is.na(ret)]), 
+    y = c('R', 'compiler', 'datasets', 'graphics', 'grDevices', 'grid', 'methods', 'parallel', 'splines', 'stats', 'stats4', 'tcltk', 'tools', 'utils')
+  ))
   
 }
