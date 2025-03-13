@@ -7,7 +7,9 @@
 #' @importFrom ggplot2 %+replace%
 #' @importFrom grid unit
 .onLoad <- function(libname, pkgname = 'rmarkdown.tzh') {
-
+  
+  # library(ggplot2) # R CMD check: Note: Package startup functions should not change the search path.
+  
   theme_set(
     theme_bw(
       base_size = 11, 

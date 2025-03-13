@@ -55,36 +55,6 @@ rmd_ <- function(x, ...) {
   UseMethod(generic = 'rmd_')
 }
 
-rmd_naive <- function(x, xnm, ...) {
-  return(c(
-    '```{r comment = NA}', 
-    xnm,
-    '```'
-  ))
-}
-
-#' @rdname rmd_
-#' @export rmd_.htest
-#' @export
-rmd_.htest <- rmd_naive
-
-#' @rdname rmd_
-#' @examples
-#' list(
-#'   '`htest`' = list(
-#'    t.test(mpg ~ am, data = mtcars)
-#'   ),
-#'   '`power.htest`' = list(
-#'    power.t.test(power = .90, delta = 1)
-#'   )
-#' ) |> render_(file = 'htest')
-#' @method rmd_ power.htest
-#' @export rmd_.power.htest
-#' @export
-rmd_.power.htest <- rmd_naive
-
-
-
 
 
 #' @rdname rmd_
@@ -161,96 +131,6 @@ rmd_.noquote <- function(x, xnm, ...) {
 
 
 
-
-
-
-
-
-
-#' @rdname rmd_
-#' @examples
-#' library(ggplot2); list(
-#'   '`ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point()
-#' ) |> render_(file = 'ggplot')
-#' @export rmd_.ggplot
-#' @export
-rmd_.ggplot <- function(x, xnm, ...) {
-  
-  h <- attr(x, which = 'fig.height', exact = TRUE) %||% 4
-  w <- attr(x, which = 'fig.width', exact = TRUE) %||% 7
-  
-  #corr <- attr(x, which = 'corr', exact = TRUE) # correlation coefficients from [ggScatter]
-  #corr_rmd <- if (length(corr)) {
-  #  c(
-  #    '```{r}', 
-  #    if (!is.recursive(corr)) {
-  #      sprintf(fmt = 'as_flextable(attr(%s, which = \'corr\', exact = TRUE))', xnm)
-  #    } else sprintf(fmt = 'as_flextable(attr(%s, which = \'corr\', exact = TRUE)[[%d]])', xnm, seq_along(corr)), 
-  #    '```'
-  #  )
-  #} # else NULL
-  
-  return(c(
-    attr(x, which = 'text', exact = TRUE),
-    '\n',
-    sprintf(fmt = '```{r fig.height = %.1f, fig.width = %.1f}', h, w), 
-    sprintf(fmt = 'suppressWarnings(print(%s))', xnm), 
-    '```',
-    # corr_rmd,
-    '<any-text>'
-  ))
-}
-
-
-#' @rdname rmd_
-#' @examples
-#' library(plotly); list(
-#'  '`htmlwidget` 1' = plot_ly(economics, x = ~date, y = ~pop, type = 'scatter', mode = 'markers'),
-#'  '`htmlwidget` 2' = plot_ly(z = ~volcano, type = "surface")
-#' ) |> render_(file = 'htmlwidget')
-#' @export rmd_.htmlwidget
-#' @export
-rmd_.htmlwidget <- function(x, xnm, ...) {
-  return(c(
-    attr(x, which = 'text', exact = TRUE),
-    '\n',
-    '```{r}',
-    xnm, # invokes ?htmlwidgets:::print.htmlwidget
-    # sprintf(fmt = '%s |> print()', xnm), # do *not* do this!!
-    '```',
-    '<any-text>'
-  ))
-  
-}
-
-
-
-
-
-
-#' @rdname rmd_
-#' @export
-rmd_.gDesc <- function(x, xnm, ...) {
-  .Defunct(msg = 'use library(patchwork) instead!')
-  dm <- dim(x) # gtable:::dim.gtable
-  return(c(
-    attr(x, which = 'text', exact = TRUE),
-    '\n',
-    if (length(dm) == 2L) {
-      sprintf(fmt = '```{r fig.height = %.1f, fig.width = %.1f}', 4*dm[1L], 6*dm[2L])
-    } else '```{r}', 
-    sprintf(fmt = 'grid::grid.draw(%s)', xnm), 
-    '```'
-  ))
-}
-
-#' @rdname rmd_
-#' @export
-rmd_.gList <- rmd_.gDesc
-
-
-
-
 #' @rdname rmd_
 #' @examples
 #' library(flextable); list(
@@ -265,9 +145,6 @@ rmd_.flextable <- function(x, xnm, ...) {
     '```'
   ))
 }
-
-
-
 
 
 
