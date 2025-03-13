@@ -24,27 +24,27 @@
 #' 
 #' @examples 
 #' citation() |> rmd_.bibentry()
-#' library(ggplot2); 'ggplot2' |> citation() |> rmd_.bibentry()
-#' list(
-#'  'Methods' = list(
-#'   'String manipulation by **`R`** package **`stringi`**.',
-#'   'Conversion of R regression output to LaTeX or HTML by **`R`** package **`texreg`**.'
-#'  ),
-#'  '`bibentry`' = list(
-#'   'stringi' |> citation(), # good doi
-#'   'texreg' |> citation() # bad doi
-#'  )
-#' ) |> render_(file = 'bibentry')
+#' 'ggplot2' |> citation() |> rmd_.bibentry()
+#' 'stringi' |> citation() |> rmd_.bibentry() # good doi
+#' 'texreg' |> citation() |> rmd_.bibentry() # bad doi
 #' 
+#' \dontrun{
 #' # compare
 #' 'stringi' |> citation() |> toBibtex() # using doi field, correct
-#' 'texreg' |> citation() |> toBibtex() # using url field, not good! have not dealt with this before
+#' 'texreg' |> citation() |> toBibtex() # using url field, not good! have not dealt with this yet
+#' }
+#' 
+#' list(
+#'  'Methods' = list(
+#'   'String manipulation by <u>**`R`**</u> package <u>**`stringi`**</u>.',
+#'   'R regression output to LaTeX or HTML by <u>**`R`**</u> package <u>**`texreg`**</u>.'
+#'  )
+#' ) |> render_(file = 'bibentry')
 #' 
 #' \dontrun{ # disabled for ?devtools::check
 #' ct = installed.packages() |>
 #'  rownames() |>
-#'  lapply(FUN = function(i) i |> citation()) # slow
-#' 
+#'  lapply(FUN = citation) # slow
 #' ct |> lapply(FUN = rmd_.bibentry)
 #' }
 #' @importFrom stringi stri_extract_all_regex stri_replace_all_fixed stri_replace_all_regex
@@ -72,7 +72,7 @@ rmd_.bibentry <- function(x, ...) {
     x[has_doi] <- doi |>
       unlist() |>
       stri_replace_all_fixed(pattern = fixed_pattern, replacement = fixed_replacement, vectorize_all = FALSE) |> # to get [topic](url)
-      stri_replace_all_regex(str = y[has_doi], pattern = regex_pattern)
+      stri_replace_all_regex(str = x[has_doi], pattern = regex_pattern)
     
     return(x)
   }
