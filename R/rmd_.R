@@ -37,14 +37,7 @@
 #' library(venn.tzh); list(
 #'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
 #' ) |> render_(file = 'venn')
-#' 
-#' library(consort.tzh); list(
-#'   '`consort`' = consort_plot(data = dispos.data, 
-#'     orders = c(trialno = 'Population', exclusion = 'Excluded', trialno = 'Allocated'),
-#'     side_box = c('exclusion'), cex = 0.9)
-#' ) |> render_(file = 'consort')
 #' @name rmd_
-#' @importFrom consort.tzh rmd_.consort
 #' @importFrom htest.tzh rmd_.htest_array
 #' @importFrom mDFR rmd_.maxT
 #' @importFrom rpart.tzh rmd_.rpart
@@ -115,38 +108,10 @@ rmd_.numeric <- function(x, ...) {
 rmd_.character <- function(x, ...) x # not ?base::identity
 
 
-
-
 #' @rdname rmd_
 #' @export rmd_.noquote
 #' @export
 rmd_.noquote <- function(x, xnm, ...) {
   rmd_(x = unclass(x), xnm = sprintf(fmt = 'unclass(%s)', xnm), ...)
 }
-
-
-
-rmd_print_ <- function(x, xnm, ...) {
-  return(c(
-    '```{r}',
-    xnm,
-    '```'
-  ))
-}
-
-#' @rdname rmd_
-#' @examples
-#' library(flextable); library(reactable); list(
-#'  '`flextable`' = flextable(mtcars),
-#'  '`reactable`' = reactable(iris)
-#' ) |> render_(file = 'Fancy Tables')
-#' @export rmd_.flextable
-#' @export
-rmd_.flextable <- rmd_print_
-
-#' @rdname rmd_
-#' @export rmd_.reactable
-#' @export
-rmd_.reactable <- rmd_print_
-
 

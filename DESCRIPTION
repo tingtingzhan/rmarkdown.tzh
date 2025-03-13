@@ -7,7 +7,6 @@ Description: Tingting's extension to rmarkdown package.
 License: GPL-2
 Encoding: UTF-8
 Imports: rmarkdown, ggplot2, stringi, 
-  consort.tzh,
   htest.tzh,
   mDFR,
   rpart.tzh, 
@@ -16,6 +15,6 @@ Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"),
 Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.4.0)
-Suggests: flextable, GGally, lattice, patchwork, plotly, reactable, rpart, 
+Suggests: consort, flextable, GGally, lattice, patchwork, plotly, reactable, rpart, 
   flextable.tzh, survival.tzh
 RoxygenNote: 7.3.2
