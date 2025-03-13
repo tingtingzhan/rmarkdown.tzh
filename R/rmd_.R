@@ -92,11 +92,6 @@ rmd_.array <- function(x, xnm, ...) {
 
 
 
-
-
-
-
-
 #' @rdname rmd_
 #' @export rmd_.list
 #' @export
@@ -131,14 +126,7 @@ rmd_.noquote <- function(x, xnm, ...) {
 
 
 
-#' @rdname rmd_
-#' @examples
-#' library(flextable); list(
-#'  '`flextable`' = flextable(mtcars)
-#' ) |> render_(file = 'flextable')
-#' @export rmd_.flextable
-#' @export
-rmd_.flextable <- function(x, xnm, ...) {
+rmd_print_ <- function(x, xnm, ...) {
   return(c(
     '```{r}',
     xnm,
@@ -146,6 +134,19 @@ rmd_.flextable <- function(x, xnm, ...) {
   ))
 }
 
+#' @rdname rmd_
+#' @examples
+#' library(flextable); library(reactable); list(
+#'  '`flextable`' = flextable(mtcars),
+#'  '`reactable`' = reactable(iris)
+#' ) |> render_(file = 'Fancy Tables')
+#' @export rmd_.flextable
+#' @export
+rmd_.flextable <- rmd_print_
 
+#' @rdname rmd_
+#' @export rmd_.reactable
+#' @export
+rmd_.reactable <- rmd_print_
 
 

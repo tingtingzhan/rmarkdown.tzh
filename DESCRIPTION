@@ -16,6 +16,6 @@ Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"),
 Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.4.0)
-Suggests: flextable, GGally, lattice, patchwork, plotly, rpart, 
+Suggests: flextable, GGally, lattice, patchwork, plotly, reactable, rpart, 
   flextable.tzh, survival.tzh
 RoxygenNote: 7.3.2

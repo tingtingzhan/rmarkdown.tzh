@@ -10,6 +10,7 @@
 \alias{rmd_.character}
 \alias{rmd_.noquote}
 \alias{rmd_.flextable}
+\alias{rmd_.reactable}
 \alias{rmd_.gDesc}
 \alias{rmd_.gList}
 \alias{rmd_.gg}
@@ -34,6 +35,8 @@ rmd_(x, ...)
 \method{rmd_}{noquote}(x, xnm, ...)
 
 \method{rmd_}{flextable}(x, xnm, ...)
+
+\method{rmd_}{reactable}(x, xnm, ...)
 
 \method{rmd_}{gDesc}(x, xnm, ...)
 
@@ -95,9 +98,10 @@ list(
 list(
   '`matrix`' = VADeaths
 ) |> render_(file = 'matrix')
-library(flextable); list(
- '`flextable`' = flextable(mtcars)
-) |> render_(file = 'flextable')
+library(flextable); library(reactable); list(
+ '`flextable`' = flextable(mtcars),
+ '`reactable`' = reactable(iris)
+) |> render_(file = 'Fancy Tables')
 library(ggplot2); list(
   '`ggplot2::ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
   '`GGally::ggmatrix`' = GGally::ggpairs(swiss, columns = c(1:2, 6))
