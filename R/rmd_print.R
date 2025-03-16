@@ -65,6 +65,12 @@ rmd_.power.htest <- rmd_print_ # rmd_print0; either okay
 
 
 #' @rdname rmd_
+#' 
+#' @note
+#' Read \url{https://plotly.com/r/subplots/} 
+#' on how to stack `'plotly'` objects 
+#' (via function \link[plotly]{subplot}).
+#' 
 #' @examples
 #' library(flextable); library(reactable); library(plotly); 
 #' list(

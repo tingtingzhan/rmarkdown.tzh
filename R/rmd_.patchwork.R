@@ -10,7 +10,13 @@
 #' 
 #' @param ... ..
 #' 
+#' @note
+#' As for now (early 2025), tzh prefers package \pkg{patchwork} over 
+#' function `ggpubr::ggarrange`.
+#' 
 #' @examples
+#' packageDate('patchwork')
+#' packageDate('ggpubr')
 #' id = quote(list(
 #'    All = TRUE, Female = (sex == 'Female'), Male = (sex == 'Male')
 #' ))

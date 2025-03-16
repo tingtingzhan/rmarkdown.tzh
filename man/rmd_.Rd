@@ -62,6 +62,11 @@ rmd_(x, ...)
 \description{
 R Markdown Script
 }
+\note{
+Read \url{https://plotly.com/r/subplots/}
+on how to stack \code{'plotly'} objects
+(via function \link[plotly]{subplot}).
+}
 \examples{
 \donttest{
 library(mDFR)
