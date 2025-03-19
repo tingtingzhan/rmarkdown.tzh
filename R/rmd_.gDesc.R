@@ -3,7 +3,7 @@
 #' @export rmd_.gDesc
 #' @export
 rmd_.gDesc <- function(x, xnm, ...) {
-  .Defunct(msg = 'use library(patchwork) instead!')
+  .Defunct(new = 'library(patchwork)')
   dm <- dim(x) # gtable:::dim.gtable
   return(c(
     attr(x, which = 'text', exact = TRUE),

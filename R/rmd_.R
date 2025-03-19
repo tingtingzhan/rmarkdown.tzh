@@ -125,9 +125,8 @@ rmd_.gList <- function(x, xnm, ...) {
     attr(x, which = 'text', exact = TRUE),
     '\n',
     '```{r}', 
-    'grid::grid.newpage()',
+    'grid::grid.newpage()', # probably not needed; but wont hurt
     sprintf(fmt = '%s |> grid::grid.draw()', xnm),
-    # essentially tzh's ?venn.tzh::plot.gList
     '```'
   ))
 }
