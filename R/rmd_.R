@@ -115,7 +115,7 @@ rmd_.noquote <- function(x, xnm, ...) {
 
 #' @rdname rmd_
 #' @examples
-#' library(venn.tzh); list(
+#' library(grid.tzh); list(
 #'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
 #' ) |> render_(file = 'gList')
 #' @export rmd_.gList

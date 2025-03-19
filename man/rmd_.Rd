@@ -94,7 +94,7 @@ list(
 list(
   '`matrix`' = VADeaths
 ) |> render_(file = 'matrix')
-library(venn.tzh); list(
+library(grid.tzh); list(
   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
 ) |> render_(file = 'gList')
 library(lattice); Depth = equal.count(quakes$depth, number=8, overlap=.1)
