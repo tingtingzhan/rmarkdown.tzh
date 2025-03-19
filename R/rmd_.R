@@ -126,7 +126,7 @@ rmd_.gList <- function(x, xnm, ...) {
     '\n',
     '```{r}', 
     'grid::grid.newpage()', # probably not needed; but wont hurt
-    sprintf(fmt = '%s |> grid::grid.draw()', xnm),
+    sprintf(fmt = '%s |> grid::grid.draw()', xnm), # ?grid:::grid.draw.gList
     '```'
   ))
 }
