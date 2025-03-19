@@ -34,14 +34,10 @@
 #'   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
 #' ) |> render_(file = 'rpart')
 #' 
-#' library(venn.tzh); list(
-#'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
-#' ) |> render_(file = 'venn')
 #' @name rmd_
 #' @importFrom htest.tzh rmd_.htest_array
 #' @importFrom mDFR rmd_.maxT
 #' @importFrom rpart.tzh rmd_.rpart
-#' @importFrom venn.tzh rmd_.venn
 #' @export
 rmd_ <- function(x, ...) {
   if (!length(x)) return(invisible())
@@ -114,4 +110,26 @@ rmd_.character <- function(x, ...) x # not ?base::identity
 rmd_.noquote <- function(x, xnm, ...) {
   rmd_(x = unclass(x), xnm = sprintf(fmt = 'unclass(%s)', xnm), ...)
 }
+
+
+
+#' @rdname rmd_
+#' @examples
+#' library(venn.tzh); list(
+#'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
+#' ) |> render_(file = 'venn')
+#' @export rmd_.gList
+#' @export
+rmd_.gList <- function(x, xnm, ...) {
+  return(c(
+    attr(x, which = 'text', exact = TRUE),
+    '\n',
+    '```{r}', 
+    'grid::grid.newpage()',
+    sprintf(fmt = '%s |> grid::grid.draw()', xnm),
+    # essentially tzh's ?venn.tzh::plot.gList
+    '```'
+  ))
+}
+
 

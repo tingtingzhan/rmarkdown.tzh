@@ -1,5 +1,6 @@
 
 #' @rdname rmd_
+#' @export rmd_.gDesc
 #' @export
 rmd_.gDesc <- function(x, xnm, ...) {
   .Defunct(msg = 'use library(patchwork) instead!')
@@ -14,8 +15,4 @@ rmd_.gDesc <- function(x, xnm, ...) {
     '```'
   ))
 }
-
-#' @rdname rmd_
-#' @export
-rmd_.gList <- rmd_.gDesc
 

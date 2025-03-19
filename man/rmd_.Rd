@@ -9,8 +9,8 @@
 \alias{rmd_.numeric}
 \alias{rmd_.character}
 \alias{rmd_.noquote}
-\alias{rmd_.gDesc}
 \alias{rmd_.gList}
+\alias{rmd_.gDesc}
 \alias{rmd_.trellis}
 \alias{rmd_.consort}
 \alias{rmd_.gg}
@@ -34,9 +34,9 @@ rmd_(x, ...)
 
 \method{rmd_}{noquote}(x, xnm, ...)
 
-\method{rmd_}{gDesc}(x, xnm, ...)
-
 \method{rmd_}{gList}(x, xnm, ...)
+
+\method{rmd_}{gDesc}(x, xnm, ...)
 
 \method{rmd_}{trellis}(x, xnm, ...)
 
@@ -88,15 +88,15 @@ library(rpart.tzh); library(rpart); list(
   '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
 ) |> render_(file = 'rpart')
 
-library(venn.tzh); list(
-  '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
-) |> render_(file = 'venn')
 list(
   '`data.frame`' = swiss
 ) |> render_(file = 'data.frame')
 list(
   '`matrix`' = VADeaths
 ) |> render_(file = 'matrix')
+library(venn.tzh); list(
+  '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
+) |> render_(file = 'venn')
 library(lattice); Depth = equal.count(quakes$depth, number=8, overlap=.1)
 library(consort); data(dispos.data)
 list(
