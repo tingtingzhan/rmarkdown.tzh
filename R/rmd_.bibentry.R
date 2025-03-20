@@ -115,7 +115,10 @@ url2doi <- function(x) {
       url_ <- b[['url']] # name clash ?base::url
       if (!length(url_)) return(b)
       if (!grepl(pattern = 'https://doi.org/', x = url_)) return(b)
-      b[['doi']] <- gsub(pattern = 'https://doi.org/', replacement = '', x = url_)
+      doi <- gsub(pattern = 'https://doi.org/', replacement = '', x = url_)
+      if (length(b[['doi']])) {
+        if (!identical(b[['doi']], doi)) stop()
+      } else b[['doi']] <- doi
       b[['url']] <- NULL
       return(b)
     })
