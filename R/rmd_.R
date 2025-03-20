@@ -86,10 +86,12 @@ rmd_.array <- function(x, xnm, ...) {
 #' @export rmd_.list
 #' @export
 rmd_.list <- function(x, xnm, ...) {
-  tmp <- lapply(seq_along(x), FUN = function(i) {
-    c(rmd_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...), '\n\n')
-  })
-  unlist(tmp, recursive = FALSE, use.names = FALSE)
+  x |> 
+    seq_along() |>
+    lapply(FUN = function(i) {
+      c(rmd_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...), '\n\n')
+    }) |> 
+    unlist(recursive = FALSE, use.names = FALSE)
 }
 
 #' @rdname rmd_

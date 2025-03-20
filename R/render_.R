@@ -93,20 +93,20 @@ render_ <- function(
     lrmd <- c(
       lrmd, 
       '\n', # must use an extra '\n' (to separate from previous 'character')
-      sprintf(fmt = '## %s', nms[i]), # I like title font smaller than '#' or '##'
+      sprintf(fmt = '# %s', nms[i]),
       if (autofold) '<details>',
-      '\n\n', 
+      '\n',
       rmd_(x = content[[i]], xnm = sprintf(fmt = 'content[[%d]]', i)), 
-      '\n\n',
-      '</details>' # if (autofold) 
+      '\n',
+      '</details>' # whether (autofold) or not
     )
   }
   
   lrmd <- c(
     lrmd, 
     '\n',
-    '## Citations',
-    '<details>',
+    '# Citations',
+    '<details>', # always autofold
     lrmd |> 
       extract_pkg_name() |> 
       lapply(FUN = function(i) i |> citation() |> rmd_.bibentry()) |>
