@@ -74,6 +74,7 @@ render_ <- function(
     '    margin-right: auto;',
     '  }',
     '</style>',
+    
     '```{r setup, include = FALSE}',
     'knitr::opts_chunk$set(echo = FALSE)',
     'options(bitmapType = \'cairo\')', # for correct unicode support; DO I STILL NEED THIS ??
