@@ -124,11 +124,26 @@ rmd_.gList <- function(x, xnm, ...) {
   return(c(
     attr(x, which = 'text', exact = TRUE),
     '\n',
-    '```{r}', 
-    'grid::grid.newpage()', # probably not needed; but wont hurt
-    sprintf(fmt = '%s |> grid::grid.draw()', xnm), # ?grid:::grid.draw.gList
+    '```{r}', # let \pkg{grid} figure out the width and height!!!
+    # 'grid::grid.newpage()', # no need!!
+    sprintf(fmt = '%s |> grid::grid.draw()', xnm), 
+    # ?grid:::grid.draw.gList
+    # ?grid:::grid.draw.grob
+    # etc.
     '```'
   ))
 }
 
+#' @rdname rmd_
+#' @note
+#' Function [rmd_.gDesc()] is useful (e.g., returned value of function \link[grid.tzh]{consort_plot_rx})
+#' @export rmd_.gDesc
+#' @export
+rmd_.gDesc <- rmd_.gList
+
+if (FALSE) {
+  list(
+    figure = const_all # Rupsa's study
+  ) |> render_(file = 'gDesc')
+}
 

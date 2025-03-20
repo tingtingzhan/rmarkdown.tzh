@@ -35,6 +35,7 @@ rmd_.patchwork <- function(x, xnm, ncol = 2L, ...) {
   
   return(c(
     sprintf(fmt = '```{r fig.height = %.1f, fig.width = %.1f}', h, w), 
+    # '```{r}', # automatic height and weight not good; packageDate('patchwork') 2024-09-16
     sprintf(fmt = 'suppressWarnings(%s + patchwork::plot_layout(ncol = %d))', xnm, ncol), # not sure how to put in `...`
     '```',
     '<any-text>'
