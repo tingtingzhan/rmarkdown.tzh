@@ -62,7 +62,7 @@ rmd_(x, ...)
 R Markdown Script
 }
 \note{
-Function \code{\link[=rmd_.gDesc]{rmd_.gDesc()}} is useful (e.g., returned value of function \link[grid.tzh]{consort_plot_rx})
+Function \code{\link[=rmd_.gDesc]{rmd_.gDesc()}} is useful (e.g., returned value of function \link[grid.tzh]{consort_rx})
 
 Read \url{https://plotly.com/r/subplots/}
 on how to stack \code{'plotly'} objects

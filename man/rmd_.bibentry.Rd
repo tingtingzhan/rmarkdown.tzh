@@ -12,13 +12,13 @@
 \item{...}{additional parameters, currently not in use}
 }
 \value{
-Function \link{rmd_.bibentry} returns a \link[base]{character} scalar or \link[base]{vector}.
+Function \code{\link[=rmd_.bibentry]{rmd_.bibentry()}} returns a \link[base]{character} scalar or \link[base]{vector}.
 }
 \description{
 R markdown format of a \link[utils]{citation} and/or \link[utils]{bibentry} object.
 }
 \details{
-Function \link{rmd_.bibentry} beautifies the output from
+Function \code{\link[=rmd_.bibentry]{rmd_.bibentry()}} beautifies the output from
 function \code{utils:::format.bibentry} (with option \code{style = 'text'})
 in the following ways.
 \itemize{
@@ -31,13 +31,6 @@ in the following ways.
 citation() |> rmd_.bibentry()
 'ggplot2' |> citation() |> rmd_.bibentry()
 'stringi' |> citation() |> rmd_.bibentry() # good doi
-'texreg' |> citation() |> rmd_.bibentry() # bad doi
-
-\dontrun{
-# compare
-'stringi' |> citation() |> toBibtex() # using doi field, correct
-'texreg' |> citation() |> toBibtex() # using url field, not good! have not dealt with this yet
-}
 
 list(
  'Methods' = list(

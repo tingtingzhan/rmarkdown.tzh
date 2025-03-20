@@ -10,7 +10,7 @@
 #' @param ... additional parameters, currently not in use
 #' 
 #' @details
-#' Function [rmd_.bibentry] beautifies the output from 
+#' Function [rmd_.bibentry()] beautifies the output from 
 #' function `utils:::format.bibentry` (with option `style = 'text'`)
 #' in the following ways.
 #' \itemize{
@@ -20,19 +20,12 @@
 #' }
 #' 
 #' @returns 
-#' Function [rmd_.bibentry] returns a \link[base]{character} scalar or \link[base]{vector}.
+#' Function [rmd_.bibentry()] returns a \link[base]{character} scalar or \link[base]{vector}.
 #' 
 #' @examples 
 #' citation() |> rmd_.bibentry()
 #' 'ggplot2' |> citation() |> rmd_.bibentry()
 #' 'stringi' |> citation() |> rmd_.bibentry() # good doi
-#' 'texreg' |> citation() |> rmd_.bibentry() # bad doi
-#' 
-#' \dontrun{
-#' # compare
-#' 'stringi' |> citation() |> toBibtex() # using doi field, correct
-#' 'texreg' |> citation() |> toBibtex() # using url field, not good! have not dealt with this yet
-#' }
 #' 
 #' list(
 #'  'Methods' = list(
@@ -52,7 +45,9 @@
 #' @export
 rmd_.bibentry <- function(x, ...) {
   
-  y <- x |> format(style = 'text') # ?utils:::format.citation -> ?utils:::format.bibentry
+  y <- x |> 
+    url2doi() |>
+    format(style = 'text') # ?utils:::format.citation -> ?utils:::format.bibentry
   # return may have `length(y) > 1L`
   if (!length(y) || anyNA(y) || any(!nzchar(y))) stop('Package ', sQuote(x), ' bug?')
   
@@ -83,15 +78,6 @@ rmd_.bibentry <- function(x, ...) {
     fixed_replacement = c(' [doi:', '](https://doi.org/', ')')
   )
 
-  if (FALSE) {
-    # no need! rmarkdown rendered product is the same :)))
-    y <- y |> format_doi( # doi in url field (e.g., \pkg{texreg})
-      regex_pattern = '( <https://doi.org/)(.*?)(>)(.|,)', 
-      fixed_pattern = c(' <https://doi.org/', '>'), 
-      fixed_replacement = c(' https://doi.org/', '')
-    ) # sufficiently okay!
-  }
-  
   pkg <- attr(x, which = 'package', exact = TRUE)
   
   return(sprintf(
@@ -102,18 +88,41 @@ rmd_.bibentry <- function(x, ...) {
 }
 
 
-# @title Wrongly put `doi` in `url`
-# 
-# @param x a `'Bibtex'` object (return of function \link[utils]{toBibtex})
-# 
-# @examples
-# citation('VGAM') |> toBibtex() # really weird structure..
-# 
-# @keywords internal
-# @export
-#doi_in_url <- function(x) {
-#  if (!('url' %in% names(x))) return(FALSE)
-#  grepl(pattern = 'https://doi.org/', x = x[['url']])
-#}
+#' @title Correct `doi` in `url`
+#' 
+#' @param x a \link[utils]{citation} and/or \link[utils]{bibentry}
+#' 
+#' @returns
+#' Function [url2doi()] returns a \link[utils]{citation} and/or \link[utils]{bibentry}.
+#' 
+#' @examples
+#' 'stringi' |> citation() # using doi field, correct
+#' 'texreg' |> citation() # doi in url field, not good!
+#' 
+#' # \pkg{texreg} has textVersion hard-coded in CITATION file
+#' # therefore 'textVersion' cannot be updated
+#' 'texreg' |> citation() |> url2doi() # only a partial fix 
+#' 
+#' 'robslopes' |> citation() |> toBibtex()
+#' 'robslopes' |> citation() |> url2doi() |> toBibtex() # complete fix!
+#' 
+#' @keywords internal
+#' @export
+url2doi <- function(x) {
+  
+  ret <- unclass(x) |> 
+    lapply(FUN = function(b) { # (b = unclass(x)[[1L]])
+      url_ <- b[['url']] # name clash ?base::url
+      if (!length(url_)) return(b)
+      if (!grepl(pattern = 'https://doi.org/', x = url_)) return(b)
+      b[['doi']] <- gsub(pattern = 'https://doi.org/', replacement = '', x = url_)
+      b[['url']] <- NULL
+      return(b)
+    })
+  
+  attributes(ret) <- attributes(x)
+  return(ret)
+  
+}
 
 

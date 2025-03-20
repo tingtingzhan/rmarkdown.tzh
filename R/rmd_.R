@@ -136,7 +136,7 @@ rmd_.gList <- function(x, xnm, ...) {
 
 #' @rdname rmd_
 #' @note
-#' Function [rmd_.gDesc()] is useful (e.g., returned value of function \link[grid.tzh]{consort_plot_rx})
+#' Function [rmd_.gDesc()] is useful (e.g., returned value of function \link[grid.tzh]{consort_rx})
 #' @export rmd_.gDesc
 #' @export
 rmd_.gDesc <- rmd_.gList
