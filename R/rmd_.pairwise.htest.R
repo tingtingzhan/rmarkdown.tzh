@@ -5,10 +5,10 @@
 #' @examples
 #' list(
 #'   '`pairwise.htest`' = airquality |> 
-#'   within.data.frame(expr = {
-#'     Month = factor(Month, labels = month.abb[5:9])
-#'   }) |>
-#'   with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
+#'     within.data.frame(expr = {
+#'       Month = factor(Month, labels = month.abb[5:9])
+#'     }) |>
+#'     with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
 #' ) |> render_(file = 'pairwise.htest')
 #' 
 #' @export rmd_.pairwise.htest

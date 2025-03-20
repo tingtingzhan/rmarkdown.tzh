@@ -25,6 +25,5 @@ Correct \code{doi} in \code{url}
 
 'robslopes' |> citation() |> toBibtex()
 'robslopes' |> citation() |> url2doi() |> toBibtex() # complete fix!
-
 }
 \keyword{internal}

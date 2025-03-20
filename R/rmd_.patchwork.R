@@ -13,11 +13,9 @@
 #' function `ggpubr::ggarrange`.
 #' 
 #' @examples
-#' id = quote(list(
-#'    All = TRUE, Female = (sex == 'Female'), Male = (sex == 'Male')
-#' ))
 #' library(survival.tzh); list(
-#'  '`patchwork`' = subset_ggKM(os ~ ph.ecog, subset = id, data = lung2)
+#'  '`patchwork`' = subset_ggKM(os ~ ph.ecog, subset = list(All = TRUE, Female = (sex == 'Female')), 
+#'     data = lung2)
 #' ) |> render_(file = 'patchwork')
 #' 
 #' @export rmd_.patchwork

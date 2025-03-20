@@ -80,16 +80,6 @@ Function \code{\link[=rmd_]{rmd_()}} returns a \link[base]{character} scalar or 
 \description{
 To create R markdown script for various objects.
 }
-\details{
-Function \code{\link[=rmd_.bibentry]{rmd_.bibentry()}} beautifies the output from
-function \code{utils:::format.bibentry} (with option \code{style = 'text'})
-in the following ways.
-\itemize{
-\item{Line break \code{'\\n'} is replaced by a white space;}
-\item{Fancy quotes \eqn{``}, \eqn{''}, \eqn{`} and \eqn{'} are removed;}
-\item{doi entries are shown as URLs with labels (in R markdown grammar).}
-}
-}
 \note{
 As for now (early 2025), tzh prefers package \pkg{patchwork} over
 function \code{ggpubr::ggarrange}.
@@ -122,22 +112,11 @@ list('`data.frame`' = swiss) |> render_(file = 'data.frame')
 
 list('`matrix`' = VADeaths) |> render_(file = 'matrix')
 
-citation() |> rmd_.bibentry()
-'ggplot2' |> citation() |> rmd_.bibentry()
-'stringi' |> citation() |> rmd_.bibentry() # good doi
-
 list(
- 'Methods' = list(
-  'String manipulation by <u>**`R`**</u> package <u>**`stringi`**</u>.',
-  'R regression output to LaTeX or HTML by <u>**`R`**</u> package <u>**`texreg`**</u>.'
- )
+ stringi = 'String manipulation by <u>**`R`**</u> package <u>**`stringi`**</u>.',
+ texreg = 'R regression output to LaTeX or HTML by <u>**`R`**</u> package <u>**`texreg`**</u>.',
+ stats = 'Linear regression by <u>**`R`**</u> package <u>**`stats`**</u>.'
 ) |> render_(file = 'bibentry')
-
-\dontrun{ # disabled for ?devtools::check
-ct = installed.packages() |>
- rownames() |>
- lapply(FUN = citation) # slow
-ct |> lapply(FUN = rmd_.bibentry)}
 
 library(magick); list(
  '`magick-image`' = 'https://jeroen.github.io/images/frink.png' |> image_read()
@@ -145,17 +124,15 @@ library(magick); list(
 
 list(
   '`pairwise.htest`' = airquality |> 
-  within.data.frame(expr = {
-    Month = factor(Month, labels = month.abb[5:9])
-  }) |>
-  with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
+    within.data.frame(expr = {
+      Month = factor(Month, labels = month.abb[5:9])
+    }) |>
+    with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
 ) |> render_(file = 'pairwise.htest')
 
-id = quote(list(
-   All = TRUE, Female = (sex == 'Female'), Male = (sex == 'Male')
-))
 library(survival.tzh); list(
- '`patchwork`' = subset_ggKM(os ~ ph.ecog, subset = id, data = lung2)
+ '`patchwork`' = subset_ggKM(os ~ ph.ecog, subset = list(All = TRUE, Female = (sex == 'Female')), 
+    data = lung2)
 ) |> render_(file = 'patchwork')
 
 library(grid.tzh); list(
