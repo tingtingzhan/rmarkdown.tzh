@@ -1,28 +1,25 @@
 
+# packageDate('patchwork')
+# packageDate('ggpubr')
 
-#' @title R Markdown Script of \link[patchwork]{patchwork}
+
+
+#' @rdname rmd_
 #' 
-#' @param x a \link[patchwork]{patchwork}
-#' 
-#' @param xnm ..
-#' 
-#' @param ncol \link[base]{integer} scalar, see function \link[patchwork]{plot_layout}
-#' 
-#' @param ... ..
+#' @param ncol \link[base]{integer} scalar for function [rmd_.patchwork()], see function \link[patchwork]{plot_layout}
 #' 
 #' @note
 #' As for now (early 2025), tzh prefers package \pkg{patchwork} over 
 #' function `ggpubr::ggarrange`.
 #' 
 #' @examples
-#' packageDate('patchwork')
-#' packageDate('ggpubr')
 #' id = quote(list(
 #'    All = TRUE, Female = (sex == 'Female'), Male = (sex == 'Male')
 #' ))
 #' library(survival.tzh); list(
 #'  '`patchwork`' = subset_ggKM(os ~ ph.ecog, subset = id, data = lung2)
 #' ) |> render_(file = 'patchwork')
+#' 
 #' @export rmd_.patchwork
 #' @export
 rmd_.patchwork <- function(x, xnm, ncol = 2L, ...) {

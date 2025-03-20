@@ -1,19 +1,13 @@
 
 
 
-#' @title R Markdown Script of \CRANpkg{magick} Image
-#' 
-#' @param x a `'magick-image'` object returned from function \link[magick]{image_read}
-#' 
-#' @param xnm ..
-#' 
-#' @param ... ..
+#' @rdname rmd_
 #' 
 #' @examples
-#' ?magick::image_read
 #' library(magick); list(
 #'  '`magick-image`' = 'https://jeroen.github.io/images/frink.png' |> image_read()
 #' ) |> render_(file = 'magick')
+#' 
 #' @export `rmd_.magick-image`
 #' @export
 `rmd_.magick-image` <- function(x, xnm, ...) {

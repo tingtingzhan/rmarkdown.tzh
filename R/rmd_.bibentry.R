@@ -1,13 +1,6 @@
 
 
-#' @title R Markdown Script of \link[utils]{citation} and/or \link[utils]{bibentry}
-#' 
-#' @description 
-#' R markdown format of a \link[utils]{citation} and/or \link[utils]{bibentry} object.
-#' 
-#' @param x a \link[utils]{citation} and/or \link[utils]{bibentry}
-#'
-#' @param ... additional parameters, currently not in use
+#' @rdname rmd_
 #' 
 #' @details
 #' Function [rmd_.bibentry()] beautifies the output from 
@@ -18,9 +11,6 @@
 #' \item{Fancy quotes \eqn{``}, \eqn{''}, \eqn{`} and \eqn{'} are removed;}
 #' \item{doi entries are shown as URLs with labels (in R markdown grammar).}
 #' }
-#' 
-#' @returns 
-#' Function [rmd_.bibentry()] returns a \link[base]{character} scalar or \link[base]{vector}.
 #' 
 #' @examples 
 #' citation() |> rmd_.bibentry()
@@ -38,8 +28,8 @@
 #' ct = installed.packages() |>
 #'  rownames() |>
 #'  lapply(FUN = citation) # slow
-#' ct |> lapply(FUN = rmd_.bibentry)
-#' }
+#' ct |> lapply(FUN = rmd_.bibentry)}
+#' 
 #' @importFrom stringi stri_extract_all_regex stri_replace_all_fixed stri_replace_all_regex
 #' @export rmd_.bibentry
 #' @export

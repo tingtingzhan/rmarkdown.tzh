@@ -31,6 +31,7 @@ rmd_plot_ <- function(x, xnm, ...) {
 #'   orders = list(c(trialno = 'Population'), c(exclusion = 'Excluded'), c(arm = 'Randomized')),
 #'   side_box = c('exclusion'))
 #' ) |> render_(file = 'Vanilla Plot')
+#' 
 #' @export rmd_.trellis
 #' @export
 rmd_.trellis <- rmd_plot_ 

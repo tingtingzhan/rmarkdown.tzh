@@ -48,6 +48,7 @@ rmd_print_ <- function(x, xnm, ...) {
 #'   '`ggplot2::ggplot`' = ggplot(mtcars, aes(wt, mpg)) + geom_point(),
 #'   '`GGally::ggmatrix`' = GGally::ggpairs(swiss, columns = c(1:2, 6))
 #' ) |> render_(file = 'Explicit Print')
+#' 
 #' @export rmd_.gg
 #' @export
 rmd_.gg <- rmd_print_
@@ -81,6 +82,7 @@ rmd_.power.htest <- rmd_print_ # rmd_print0; either okay
 #'    plot_ly(z = ~volcano, type = "surface")
 #'  )
 #' ) |> render_(file = 'Do Not Say Print')
+#' 
 #' @export rmd_.flextable
 #' @export
 rmd_.flextable <- rmd_print0_ # rmd_print_ *not* okay!!

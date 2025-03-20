@@ -7,21 +7,24 @@
 
 #' @title R Markdown Script
 #' 
-#' @param x an R object
+#' @description
+#' To create R markdown script for various objects.
+#' 
+#' @param x see **Usage**
 #' 
 #' @param xnm ..
 #' 
 #' @param ... additional parameters, currently not in use
 #' 
+#' @returns 
+#' Function [rmd_()] returns a \link[base]{character} scalar or \link[base]{vector}.
+#' 
 #' @examples
-#' \donttest{
 #' library(mDFR)
-#' ?maxT_santos_test
 #' ds = split(santos1, f = ~ Hr + antigen)
 #' list(
 #'  '`maxT`' = maxT_santos_test(data1 = ds$`18.CEF`, data0 = ds$`0.CEF`)
 #' ) |> render_(file = 'maxT')
-#' } # slow
 #' 
 #' set.seed(100)
 #' x = matrix(rnorm(50), ncol = 5, dimnames = list(NULL, LETTERS[1:5]))
@@ -48,9 +51,8 @@ rmd_ <- function(x, ...) {
 
 #' @rdname rmd_
 #' @examples
-#' list(
-#'   '`data.frame`' = swiss
-#' ) |> render_(file = 'data.frame')
+#' list('`data.frame`' = swiss) |> render_(file = 'data.frame')
+#' 
 #' @export rmd_.data.frame
 #' @export
 rmd_.data.frame <- function(x, xnm, ...) {
@@ -65,9 +67,8 @@ rmd_.data.frame <- function(x, xnm, ...) {
 
 #' @rdname rmd_
 #' @examples
-#' list(
-#'   '`matrix`' = VADeaths
-#' ) |> render_(file = 'matrix')
+#' list('`matrix`' = VADeaths) |> render_(file = 'matrix')
+#' 
 #' @export rmd_.array
 #' @export
 rmd_.array <- function(x, xnm, ...) {
@@ -112,38 +113,4 @@ rmd_.noquote <- function(x, xnm, ...) {
 }
 
 
-
-#' @rdname rmd_
-#' @examples
-#' library(grid.tzh); list(
-#'   '`venn`' = venn(list(A = state.name[1:20], B = state.name[15:30]))
-#' ) |> render_(file = 'gList')
-#' @export rmd_.gList
-#' @export
-rmd_.gList <- function(x, xnm, ...) {
-  return(c(
-    attr(x, which = 'text', exact = TRUE),
-    '\n',
-    '```{r}', # let \pkg{grid} figure out the width and height!!!
-    # 'grid::grid.newpage()', # no need!!
-    sprintf(fmt = '%s |> grid::grid.draw()', xnm), 
-    # ?grid:::grid.draw.gList
-    # ?grid:::grid.draw.grob
-    # etc.
-    '```'
-  ))
-}
-
-#' @rdname rmd_
-#' @note
-#' Function [rmd_.gDesc()] is useful (e.g., returned value of function \link[grid.tzh]{consort_rx})
-#' @export rmd_.gDesc
-#' @export
-rmd_.gDesc <- rmd_.gList
-
-if (FALSE) {
-  list(
-    figure = const_all # Rupsa's study
-  ) |> render_(file = 'gDesc')
-}
 
