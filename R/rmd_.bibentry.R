@@ -112,7 +112,7 @@ if (FALSE) { # disabled for ?devtools::check
 url2doi <- function(x) {
   
   ret <- unclass(x) |> 
-    lapply(FUN = function(b) { # (b = unclass(x)[[1L]])
+    lapply(FUN = \(b) { # (b = unclass(x)[[1L]])
       url_ <- b[['url']] # name clash ?base::url
       if (!length(url_)) return(b)
       if (!grepl(pattern = 'https://doi.org/', x = url_)) return(b)

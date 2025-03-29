@@ -88,7 +88,7 @@ rmd_.array <- function(x, xnm, ...) {
 rmd_.list <- function(x, xnm, ...) {
   x |> 
     seq_along() |>
-    lapply(FUN = function(i) {
+    lapply(FUN = \(i) {
       c(rmd_(x = x[[i]], xnm = paste0(xnm, '[[', i, ']]'), ...), '\n\n')
     }) |> 
     unlist(recursive = FALSE, use.names = FALSE)

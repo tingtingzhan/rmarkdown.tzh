@@ -109,7 +109,7 @@ render_ <- function(
     '<details>', # always autofold
     lrmd |> 
       extract_pkg_name() |> 
-      lapply(FUN = function(i) i |> citation() |> rmd_.bibentry()) |>
+      lapply(FUN = \(i) i |> citation() |> rmd_.bibentry()) |>
       unlist(),
     '</details>'
   )
