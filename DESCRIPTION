@@ -9,6 +9,7 @@ Encoding: UTF-8
 Imports: rmarkdown, ggplot2 (== 3.5.1), stringi (== 1.8.7), 
   htest.tzh,
   mDFR,
+  psych.tzh,
   rpart.tzh
 Authors@R: c(person(given = "Tingting", family = "Zhan", role = c("aut", "cre"), email = c("tingtingzhan@gmail.com")))
 Language: en-US

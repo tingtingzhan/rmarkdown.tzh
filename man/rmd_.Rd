@@ -101,12 +101,17 @@ set.seed(100)
 x = matrix(rnorm(50), ncol = 5, dimnames = list(NULL, LETTERS[1:5]))
 y = matrix(rnorm(30), ncol = 3, dimnames = list(NULL, letters[1:3]))
 library(htest.tzh); list(
-  '`htest_array`' = outer.cor.test(x, y)
+ '`htest_array`' = outer.cor.test(x, y)
 ) |> render_(file = 'htest_array')
 
-library(rpart.tzh); library(rpart); list(
-  '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
+library(rpart); list(
+ '`rpart`' = rpart(Kyphosis ~ Age + Number + Start, data = kyphosis, model = TRUE)
 ) |> render_(file = 'rpart')
+
+library(psych); list(
+ 'fa' = swiss |> cov() |> fa(nfactors = 2L, fm = 'pa', rotate = 'varimax')
+) |> render_(file = 'fa')
+
 
 list('`data.frame`' = swiss) |> render_(file = 'data.frame')
 
