@@ -102,26 +102,21 @@ render_ <- function(
     )
   }
   
-  lrmd <- c(
+  c(
     lrmd, 
     '\n',
     '# Citations',
-    '<details>', # always autofold
     lrmd |> 
       extract_pkg_name() |> 
       lapply(FUN = \(i) i |> citation() |> rmd_.bibentry()) |>
-      unlist(),
-    '</details>'
-  )
+      unlist(use.names = FALSE)
+  ) |> 
+    writeLines(con = frmd, sep = '\n')
   
-  writeLines(text = lrmd, con = frmd, sep = '\n')
-  
-  # knitr::knit2html(input = frmd, output = fout)
-  # error: should call ?rmarkdown::render instead of ?knitr::knit2html because Rmd appears to be an R Markdown v2 document. 
   render(input = frmd, output_file = fout, intermediates_dir = path, quiet = TRUE)
-  system(paste0('open \'', normalizePath(fout), '\''))
+  paste0('open \'', normalizePath(fout), '\'') |> system()
   
-  if (rmd.rm) file.remove(frmd) else system(paste0('open \'', normalizePath(frmd), '\''))
+  if (rmd.rm) file.remove(frmd) else paste0('open \'', normalizePath(frmd), '\'') |> system()
   
   return(invisible(fout))
 }

@@ -16,5 +16,5 @@ Language: en-US
 Roxygen: list(markdown = TRUE)
 Depends: R (>= 4.4.0)
 Suggests: consort (== 1.2.2), flextable (== 0.9.7), GGally (== 2.2.1), lattice (== 0.22.6), magick (== 2.8.5), patchwork (== 1.3.0), plotly (== 4.10.4), psych (== 2.5.3), reactable (== 0.4.4), rpart (== 4.1.24), 
-  flextable.tzh, survival.tzh, grid.tzh, texreg, robslopes
+  flextable.tzh, survival.tzh, grid.tzh, kernlab, lava, texreg, robslopes
 RoxygenNote: 7.3.2

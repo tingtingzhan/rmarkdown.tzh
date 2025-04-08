@@ -9,7 +9,6 @@
 #'  stats = 'Linear regression by <u>**`R`**</u> package <u>**`stats`**</u>.'
 #' ) |> render_(file = 'bibentry')
 #' 
-#' @importFrom stringi stri_extract_all_regex stri_replace_all_fixed stri_replace_all_regex
 #' @export rmd_.bibentry
 #' @export
 rmd_.bibentry <- function(x, ...) {
@@ -43,6 +42,7 @@ rmd_.bibentry <- function(x, ...) {
 #' @examples
 #' 'stringi' |> citation() |> bibentry2text()
 #' 'texreg' |> citation() |> bibentry2text()
+#' @importFrom stringi stri_extract_all_regex stri_replace_all_fixed stri_replace_all_regex
 #' @keywords internal
 #' @export
 bibentry2text <- function(x) {
@@ -65,6 +65,8 @@ bibentry2text <- function(x) {
   }
   
   x |> 
+    dropManual() |>
+    sortYear(decreasing = TRUE) |>
     url2doi() |>
     format(style = 'text') |> # ?utils:::format.citation -> ?utils:::format.bibentry
     gsub(pattern = '\n', replacement = ' ') |>
@@ -86,16 +88,23 @@ if (FALSE) { # disabled for ?devtools::check
   ct = installed.packages() |>
     rownames() |>
     lapply(FUN = citation) # slow
-  ct |> lapply(FUN = rmd_.bibentry)
+  tmp = ct |> lapply(FUN = rmd_.bibentry)
+  tmp[lengths(tmp) > 1L]
 } 
 
 
-#' @title Correct `doi` in `url`
+
+
+
+#' @title Handy Tools for \link[utils]{citation}
 #' 
 #' @param x a \link[utils]{citation} and/or \link[utils]{bibentry}
 #' 
+#' @details
+#' Function [url2doi()] converts a `url` field to `doi`, if it is a DOI URL.
+#' 
 #' @returns
-#' Function [url2doi()] returns a \link[utils]{citation} and/or \link[utils]{bibentry}.
+#' All functions returns a \link[utils]{citation} and/or \link[utils]{bibentry}.
 #' 
 #' @examples
 #' 'stringi' |> citation() # using doi field, correct
@@ -107,11 +116,14 @@ if (FALSE) { # disabled for ?devtools::check
 #' 
 #' 'robslopes' |> citation() |> toBibtex()
 #' 'robslopes' |> citation() |> url2doi() |> toBibtex() # complete fix!
+#' @seealso `` utils:::`[.bibentry` ``
 #' @keywords internal
+#' @name citation_ext
 #' @export
 url2doi <- function(x) {
   
-  ret <- unclass(x) |> 
+  ret <- x |>
+    unclass() |> 
     lapply(FUN = \(b) { # (b = unclass(x)[[1L]])
       url_ <- b[['url']] # name clash ?base::url
       if (!length(url_)) return(b)
@@ -128,5 +140,57 @@ url2doi <- function(x) {
   return(ret)
   
 }
+
+
+#' @rdname citation_ext
+#' @details
+#' Function [dropManual()] removes the CRAN `Manual` citation, 
+#' if a package has one-or-more `Article` citation.
+#' @examples
+#' 'kernlab' |> citation()
+#' 'kernlab' |> citation() |> dropManual()
+#' @export
+dropManual <- function(x) {
+  
+  nx <- length(x)
+  if (nx == 1L) return(x)
+  
+  bibtype <- x |>
+    unclass() |>
+    vapply(FUN = attr, which = 'bibtype', exact = TRUE, FUN.VALUE = '')
+  
+  isManual <- (bibtype == 'Manual')
+  if (!any(isManual)) return(x)
+    
+  return(x[!isManual, drop = FALSE])
+  
+}
+
+
+
+#' @rdname citation_ext
+#' @param decreasing \link[base]{logical} scalar, see function \link[base]{order}
+#' @details
+#' Function [sortYear()] sorts multiple citations of one package by year.
+#' Tingting Zhan doesn't want to define `sort_by.citation()`, which sounds a little creepy :))
+#' @examples
+#' 'lava' |> citation()
+#' 'lava' |> citation() |> sortYear()
+#' @export
+sortYear <- function(x, decreasing = TRUE) {
+  
+  nx <- length(x)
+  if (nx == 1L) return(x)
+  
+  year <- x |>
+    unclass() |>
+    vapply(FUN = \(i) i[['year']], FUN.VALUE = '') |> 
+    as.numeric()
+  
+  return(x[order(year, decreasing = decreasing), drop = FALSE])
+  
+}
+
+
 
 
