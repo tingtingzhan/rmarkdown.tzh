@@ -131,6 +131,7 @@ url2doi <- function(x) {
       doi <- gsub(pattern = 'https://doi.org/', replacement = '', x = url_)
       if (length(b[['doi']])) {
         if (!identical(b[['doi']], doi)) stop()
+        # else do nothing
       } else b[['doi']] <- doi
       b[['url']] <- NULL
       return(b)
